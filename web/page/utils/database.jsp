@@ -3,9 +3,9 @@
 <%!public Connection getConn()throws Exception{
     Connection conn=null;
    try{
-         String db_url="jdbc:mysql://127.0.0.1:3306/userdb";
+         String db_url="jdbc:mysql://127.0.0.1:3306/leave_sys";
 		   String db_user="root";
-		   String db_pwd="root";
+		   String db_pwd="123456";
 		   Class.forName("com.mysql.jdbc.Driver");
 		  //2.2:DriverManager获得Connection 类型的连接对象conn
 		    conn=DriverManager.getConnection(db_url, db_user, db_pwd);
