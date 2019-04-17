@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="../common/head.jsp"></jsp:include>
+<%@ include file="/page/common/base.jsp"%>
 <html>
 <head>
     <title>Title</title>
@@ -19,7 +19,7 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">
             </div>
-            <form action="index.html" method="post">
+            <form action="login_" method="post">
                 <div class="panel loginbox">
                     <div class="text-center margin-big padding-big-top"><h1>课堂考勤系统</h1></div>
                     <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <div class="field">
                                 <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
-                                <img src="../../images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">
+                                <img src="<%=path%>/images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">
 
                             </div>
                         </div>
