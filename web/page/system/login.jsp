@@ -19,9 +19,9 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">
             </div>
-            <form action="<%=path%>/action/system/action_userLogin.jsp" method="post">
+            <form action="<%=path%>/action/system/action_loginSys.jsp" method="post">
                 <div class="panel loginbox">
-                    <div class="text-center margin-big padding-big-top"><h1>课堂考勤系统</h1></div>
+                    <div class="text-center margin-big padding-big-top"><h1>请假管理系统</h1></div>
                     <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
                         <div class="form-group">
                             <div class="field field-icon-right">
@@ -39,18 +39,15 @@
                             <div class="field">
                                 <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
                                 <img src="<%=path%>/images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">
-
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="field">
-                                <label class="label text-big">选择登入角色</label>
-                                <select id="login_role" class="selected-inline text-big">
-                                    <option value="1">学生</option>
-                                    <option value="2">教师</option>
-                                    <option value="3">管理员</option>
-                                </select>
-                            </div>
+                        <br>
+                        <div class="form-group" align="center">
+                            <form>
+                                <input type="radio" name="role_type" checked="checked" value="1">学生</input>
+                                <input type="radio" name="role_type" value="2">教师</input>
+                                <input type="radio" name="role_type" value="3" >管理员</input>
+                            </form>
                         </div>
                     </div>
                     <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>
