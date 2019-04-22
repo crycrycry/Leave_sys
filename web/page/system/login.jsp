@@ -42,12 +42,29 @@
                             </div>
                         </div>
                         <br>
+                        <%--<div class="form-group" align="center">--%>
+                            <%--<form>--%>
+                                <%--<input type="radio" name="role_type" checked="checked" value="1">学生</input>--%>
+                                <%--<input type="radio" name="role_type" value="2">教师</input>--%>
+                                <%--<input type="radio" name="role_type" value="3" >管理员</input>--%>
+                            <%--</form>--%>
+                        <%--</div>--%>
                         <div class="form-group" align="center">
-                            <form>
-                                <input type="radio" name="role_type" checked="checked" value="1">学生</input>
-                                <input type="radio" name="role_type" value="2">教师</input>
-                                <input type="radio" name="role_type" value="3" >管理员</input>
-                            </form>
+                            <div class="label">
+                                <%
+                                    String login_msg = (String) request.getAttribute("login_msg");
+
+                                    if (login_msg!=null){
+                                %>
+                                    <label class="">
+                                        <font color="red">
+                                            <%=login_msg%>
+                                        </font>
+                                    </label>
+                                <%
+                                    }
+                                %>
+                            </div>
                         </div>
                     </div>
                     <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>

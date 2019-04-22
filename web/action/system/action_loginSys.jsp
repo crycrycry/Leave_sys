@@ -11,44 +11,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/page/common/base.jsp"%>
 <%
-    String dbTableName = null;
-    String dbPwd = null;
-    String dbUserName = null;
-
-
     request.setCharacterEncoding("utf-8");
 
     String username = request.getParameter("username");
 
     String password = request.getParameter("password");
 
-    String roleType = request.getParameter("role_type");
-
-    System.out.println("Message = "+username+"\n"+password+"\n"+roleType);
-
     Connection connection = getConn();
 
-    switch (roleType){
-        case "1":
-            dbTableName = "sys_student";dbUserName = "student_id";dbPwd = "student_password";
-            break;
-        case "2":
-            dbTableName = "sys_teacher";dbUserName = "teacher_id";dbPwd = "teacher_password";
-            break;
-        case "3":
-            dbTableName = "sys_admin";dbUserName = "admin_id";dbPwd = "admin_password";
-            break;
-    }
+    StringBuilder sql = new StringBuilder("select * from sys_user where user_name=? and user_password=?");
 
-    StringBuilder sql = new StringBuilder("select *  from "+dbTableName+" where "+dbUserName+"='"+username+"' and "+dbPwd+"='"+password+"'");
+    PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
 
-    Statement statement = connection.createStatement();
+    preparedStatement.setString(1,username);
+    preparedStatement.setString(2,password);
 
-    ResultSet resultSet = statement.executeQuery(sql.toString());
+    ResultSet resultSet = preparedStatement.executeQuery();
 
-    System.out.println("login Message = "+sql);
+    if (resultSet.next()){
+        User user = new User();
+        user.setUserId(resultSet.getInt("user_id"));
+        user.setUsername(resultSet.getString("user_name"));
+        user.setUserPassword(resultSet.getString("user_password"));
+        user.setUserType(resultSet.getInt("user_type"));
+        user.setUserAvailable(resultSet.getInt("user_available"));
 
-    while (resultSet.next()){
-        resultSet.getString()
+        request.getSession().setAttribute("user",user);
+
+        process(request, response, "/page/common/main.jsp");
+    }else {
+        request.setAttribute("login_msg","账号或密码错误！");
+        process(request, response, "/page/system/login.jsp");
     }
 %>

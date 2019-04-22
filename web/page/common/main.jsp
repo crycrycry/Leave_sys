@@ -12,9 +12,13 @@
 <body style="background-color:#f2f9fd;">
 <div class="header bg-main">
     <div class="logo margin-big-left fadein-top">
-        <h1><img src="../../images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />课堂考勤系统</h1>
+        <h1><img src="../../images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />请假管理系统</h1>
     </div>
-    <div class="head-l" ><a href="" target="_blank" style="color:#FFF" ><span class="icon-user"></span> 欢迎 admin</a>&nbsp;&nbsp;<a class="button button-little bg-green" href="" target="_blank" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="../login.html"><span class="icon-power-off"></span> 退出登录</a> </div>
+    <div class="head-l" ><a href="" target="_blank" style="color:#FFF" ><span class="icon-user"></span> 欢迎
+        <%
+            User user = (User) request.getSession().getAttribute("user");
+            out.print(user.getUsername());
+        %></a>&nbsp;&nbsp;<a class="button button-little bg-green" href="/page/common/welcome.html" target="right" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="<%=path%>/action/system/action_outLogin.jsp"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
@@ -87,10 +91,10 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li>
 </ul>
 <div class="admin">
-    <iframe scrolling="auto" rameborder="0" src="welcome.html" name="right" width="100%" height="100%"></iframe>
+    <iframe scrolling="auto" rameborder="0" src="/page/common/welcome.html" name="right" width="100%" height="100%"></iframe>
 </div>
 <div style="text-align:center;">
-    <p>来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+    <p>来源:<a href="#" target="_blank">源码之家</a></p>
 </div>
 </body>
 </html>
