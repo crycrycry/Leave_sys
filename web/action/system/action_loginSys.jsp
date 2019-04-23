@@ -94,7 +94,7 @@
 
                     admin.setAdminId(resultSet3.getString("admin_id"));
                     admin.setUserId(resultSet3.getInt("user_id"));
-                    admin.setAdminName(resultSet3.getString("user_admin_full_name"));
+                    admin.setAdminName(resultSet3.getString("admin_full_name"));
                     admin.setAdminTelephone(resultSet3.getString("admin_telephone"));
 
                     user.setAdmin(admin);
@@ -102,6 +102,7 @@
                     close(preparedStatement3,resultSet3);
 
                     break;
+        }
         }
 
         process(request, response, "/page/common/main.jsp");

@@ -28,7 +28,7 @@
     <h2><span class="icon-user"></span>基本设置</h2>
     <ul style="display:block">
         <li><a href="<%=path%>/page/business/admin/updateMsg.jsp" target="right"><span class="icon-caret-right"></span>个人设置</a></li>
-        <li><a href="<%=path%>/page/pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
+        <li><a href="<%=path%>/page/system/password.jsp" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
         <li><a href="<%=path%>/page/page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>
         <li><a href="<%=path%>/page/adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
         <li><a href="<%=path%>/page/book.html" target="right"><span class="icon-caret-right"></span>留言管理</a></li>

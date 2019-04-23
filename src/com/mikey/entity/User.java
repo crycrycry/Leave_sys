@@ -81,4 +81,18 @@ public class User {
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userType=" + userType +
+                ", userAvailable=" + userAvailable +
+                ", student=" + student +
+                ", admin=" + admin +
+                ", instructor=" + instructor +
+                '}';
+    }
 }
