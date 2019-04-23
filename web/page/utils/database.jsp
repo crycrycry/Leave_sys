@@ -41,7 +41,9 @@
    }
     public void close(Statement stmt)throws SQLException{
        close(null, stmt, null);
-   }
+   }public void close(Statement stmt,ResultSet rs)throws SQLException{
+        close(rs, stmt,null);
+    }
    public void close(Connection conn)throws SQLException{
        close(null, null, conn);
    }

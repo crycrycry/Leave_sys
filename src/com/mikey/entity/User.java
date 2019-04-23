@@ -14,6 +14,10 @@ public class User {
     private int userType;
     private int userAvailable;
 
+    private Student student;
+    private Admin admin;
+    private Instructor instructor;
+
     public int getUserId() {
         return userId;
     }
@@ -52,5 +56,29 @@ public class User {
 
     public void setUserAvailable(int userAvailable) {
         this.userAvailable = userAvailable;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 }

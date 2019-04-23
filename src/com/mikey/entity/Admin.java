@@ -3,6 +3,8 @@ package com.mikey.entity;
 public class Admin {
     private String adminId;
 
+    private Integer userId;
+
     private String adminPassword;
 
     private String adminName;
@@ -19,6 +21,14 @@ public class Admin {
 
     public String getAdminPassword() {
         return adminPassword;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void setAdminPassword(String adminPassword) {

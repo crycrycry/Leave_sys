@@ -18,6 +18,7 @@
         <%
             User user = (User) request.getSession().getAttribute("user");
             out.print(user.getUsername());
+
         %></a>&nbsp;&nbsp;<a class="button button-little bg-green" href="/page/common/welcome.html" target="right" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="<%=path%>/action/system/action_outLogin.jsp"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
@@ -26,48 +27,48 @@
 
     <h2><span class="icon-user"></span>基本设置</h2>
     <ul style="display:block">
-        <li><a href="../../admin/addstudent.html" target="right"><span class="icon-caret-right"></span>网站设置</a></li>
-        <li><a href="../../pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
-        <li><a href="../../page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>
-        <li><a href="../../adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
-        <li><a href="../../book.html" target="right"><span class="icon-caret-right"></span>留言管理</a></li>
-        <li><a href="../../column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li>
+        <li><a href="<%=path%>/page/business/admin/updateMsg.jsp" target="right"><span class="icon-caret-right"></span>个人设置</a></li>
+        <li><a href="<%=path%>/page/pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
+        <li><a href="<%=path%>/page/page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>
+        <li><a href="<%=path%>/page/adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
+        <li><a href="<%=path%>/page/book.html" target="right"><span class="icon-caret-right"></span>留言管理</a></li>
+        <li><a href="<%=path%>/page/column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li>
     </ul>
     <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
     <ul>
-        <li><a href="../../list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>添加内容</a></li>
-        <li><a href="../../cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
+        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>添加内容</a></li>
+        <li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>
     <h2><span class="icon-user"></span>课堂考勤</h2>
     <ul>
-        <li><a href="../../list.html" target="right"><span class="icon-caret-right"></span>添加老师</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>查询老师</a></li>
+        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>添加老师</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>查询老师</a></li>
     </ul>
     <h2><span class="icon-user"></span>个人信息</h2>
     <ul>
-        <li><a href="../../list.html" target="right"><span class="icon-caret-right"></span>个人信息管理</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
+        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>个人信息管理</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
     </ul>
     <h2><span class="icon-user"></span>学生管理</h2>
     <ul>
-        <li><a href="../../admin/addstudent.html" target="right"><span class="icon-caret-right"></span>添加学生</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>查询学生</a></li>
+        <li><a href="<%=path%>/page/business/admin/addstudent.html" target="right"><span class="icon-caret-right"></span>添加学生</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>查询学生</a></li>
     </ul>
     <h2><span class="icon-user"></span>老师管理</h2>
     <ul>
-        <li><a href="../../list.html" target="right"><span class="icon-caret-right"></span>添加老师</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>查询老师</a></li>
+        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>添加老师</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>查询老师</a></li>
     </ul>
     <h2><span class="icon-wrench"></span>班级管理</h2>
     <ul>
-        <li><a href="../../list.html" target="right"><span class="icon-caret-right"></span>录入班级</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>查询班级</a></li>
+        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>录入班级</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>查询班级</a></li>
     </ul>
     <h2><span class="icon-wrench"></span>课程管理</h2>
     <ul>
-        <li><a href="../../list.html" target="right"><span class="icon-caret-right"></span>录入课程</a></li>
-        <li><a href="../../add.html" target="right"><span class="icon-caret-right"></span>查询课程</a></li>
+        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>录入课程</a></li>
+        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>查询课程</a></li>
     </ul>
 
 </div>

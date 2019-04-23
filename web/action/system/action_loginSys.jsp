@@ -11,7 +11,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/page/common/base.jsp"%>
 <%
-    request.setCharacterEncoding("utf-8");
 
     String username = request.getParameter("username");
 
@@ -38,9 +37,82 @@
 
         request.getSession().setAttribute("user",user);
 
+        switch (user.getUserType()){
+            case 1:
+                PreparedStatement preparedStatement1 = connection.prepareStatement("select * from sys_student where user_id = ?");
+                preparedStatement1.setInt(1,user.getUserId());
+
+                ResultSet resultSet1 = preparedStatement1.executeQuery();
+
+                if (resultSet1.next()){
+                    Student student = new Student();
+
+                    student.setStuId(resultSet1.getString("stu_id"));
+                    student.setUserId(resultSet1.getInt("user_id"));
+                    student.setClassId(resultSet1.getString("class_id"));
+                    student.setStuName(resultSet1.getString("stu_name"));
+                    student.setStuSex(resultSet1.getString("stu_sex"));
+                    student.setStuAddress(resultSet1.getString("stu_address"));
+                    student.setStuTelephone(resultSet1.getString("stu_telephone"));
+                    student.setStuContact(resultSet1.getString("stu_contact_tel"));
+
+                    user.setStudent(student);
+                    close(preparedStatement1,resultSet1);
+                }
+
+
+                break;
+            case 2:
+                PreparedStatement preparedStatement2 = connection.prepareStatement("select * from sys_teacher where user_id = ?");
+
+                preparedStatement2.setInt(1,user.getUserId());
+
+                ResultSet resultSet2 = preparedStatement2.executeQuery();
+
+                if (resultSet2.next()){
+                    Instructor instructor = new Instructor();
+
+                    instructor.setDepId(resultSet2.getString("inst_id"));
+                    instructor.setDepId(resultSet2.getString("dep_id"));
+                    instructor.setUserId(resultSet2.getInt("user_id"));
+                    instructor.setInstName(resultSet2.getString("inst_name"));
+                    instructor.setInstTelephone(resultSet2.getString("inst_telephone"));
+
+                    user.setInstructor(instructor);
+                    close(preparedStatement2,resultSet2);
+                }
+                break;
+            case 3:
+                PreparedStatement preparedStatement3 = connection.prepareStatement("select * from sys_admin where user_id = ?");
+
+                preparedStatement3.setInt(1,user.getUserId());
+
+                ResultSet resultSet3 = preparedStatement3.executeQuery();
+
+                if (resultSet3.next()){
+                    Admin admin = new Admin();
+
+                    admin.setAdminId(resultSet3.getString("admin_id"));
+                    admin.setUserId(resultSet3.getInt("user_id"));
+                    admin.setAdminName(resultSet3.getString("user_admin_full_name"));
+                    admin.setAdminTelephone(resultSet3.getString("admin_telephone"));
+
+                    user.setAdmin(admin);
+
+                    close(preparedStatement3,resultSet3);
+
+                    break;
+        }
+
         process(request, response, "/page/common/main.jsp");
+
     }else {
+
         request.setAttribute("login_msg","账号或密码错误！");
+
         process(request, response, "/page/system/login.jsp");
+
     }
+    //关闭连接
+    close(resultSet,preparedStatement,connection);
 %>

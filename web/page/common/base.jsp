@@ -2,6 +2,7 @@
 <%@ page import="java.io.IOException"%>
 <%@ page import="com.mikey.entity.*"%>
 <%
+	request.setCharacterEncoding("utf-8");
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>

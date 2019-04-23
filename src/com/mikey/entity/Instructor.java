@@ -3,6 +3,7 @@ package com.mikey.entity;
 public class Instructor {
     private String instId;
 
+    private Integer userId;
     private String instName;
 
     private String depId;
@@ -15,6 +16,14 @@ public class Instructor {
 
     public void setInstId(String instId) {
         this.instId = instId == null ? null : instId.trim();
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getInstName() {

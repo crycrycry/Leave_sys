@@ -3,6 +3,8 @@ package com.mikey.entity;
 public class Student {
     private String stuId;
 
+    private Integer userId;
+
     private String classId;
 
     private String stuName;
@@ -22,7 +24,15 @@ public class Student {
     }
 
     public void setStuId(String stuId) {
-        this.stuId = stuId == null ? null : stuId.trim();
+        this.stuId = stuId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getClassId() {
@@ -30,7 +40,7 @@ public class Student {
     }
 
     public void setClassId(String classId) {
-        this.classId = classId == null ? null : classId.trim();
+        this.classId = classId;
     }
 
     public String getStuName() {
@@ -38,7 +48,7 @@ public class Student {
     }
 
     public void setStuName(String stuName) {
-        this.stuName = stuName == null ? null : stuName.trim();
+        this.stuName = stuName;
     }
 
     public String getStuSex() {
@@ -46,7 +56,7 @@ public class Student {
     }
 
     public void setStuSex(String stuSex) {
-        this.stuSex = stuSex == null ? null : stuSex.trim();
+        this.stuSex = stuSex;
     }
 
     public String getStuAddress() {
@@ -54,7 +64,7 @@ public class Student {
     }
 
     public void setStuAddress(String stuAddress) {
-        this.stuAddress = stuAddress == null ? null : stuAddress.trim();
+        this.stuAddress = stuAddress;
     }
 
     public String getStuTelephone() {
@@ -62,7 +72,7 @@ public class Student {
     }
 
     public void setStuTelephone(String stuTelephone) {
-        this.stuTelephone = stuTelephone == null ? null : stuTelephone.trim();
+        this.stuTelephone = stuTelephone;
     }
 
     public String getStuContact() {
@@ -70,7 +80,7 @@ public class Student {
     }
 
     public void setStuContact(String stuContact) {
-        this.stuContact = stuContact == null ? null : stuContact.trim();
+        this.stuContact = stuContact;
     }
 
     public String getStuContacttel() {
@@ -78,6 +88,6 @@ public class Student {
     }
 
     public void setStuContacttel(String stuContacttel) {
-        this.stuContacttel = stuContacttel == null ? null : stuContacttel.trim();
+        this.stuContacttel = stuContacttel;
     }
 }
