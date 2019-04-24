@@ -12,9 +12,9 @@
 <%@ include file="/page/utils/database.jsp"%>
 
 <%
-    List<Department> departments = new ArrayList<Department>();
+    List<Course> courses = new ArrayList<Course>();
 
-    departments = (List<Department>) request.getAttribute("departments");
+    courses = (List<Course>) request.getAttribute("courses");
 %>
 <html>
 <body>
@@ -22,7 +22,7 @@
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder">二级学院列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
-            <form action="<%=path%>/action/business/department/action_searchDepartment.jsp" method="post">
+            <form action="<%=path%>/action/business/class/action_searchClass.jsp" method="post">
                     <input type="text" placeholder="请输入二级学院名称" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <input class="button border-main icon-search" type="submit" value="搜索"></li>
             </form>
@@ -30,22 +30,34 @@
         <table class="table table-hover text-center">
             <tr>
                 <th width="100" style="text-align:left; padding-left:20px;">序号</th>
-                <th width="10%">学院编号</th>
-                <th>学院名称</th>
+                <th width="10%">课程编号</th>
+                <th width="10%">课程名称</th>
+                <th width="10%">班级名称</th>
+                <th width="10%">学年</th>
+                <th width="10%">学期</th>
+                <th width="10%">学时</th>
+                <th width="10%">所属专业</th>
+                <th width="10%">所在年级</th>
                 <th width="310">操作</th>
             </tr>
             <volist name="list" id="vo">
 
                 <%
                     int i = 0;
-                    for (Department department : departments) {
+                    for (Course course : courses) {
                 %>
                 <tr>
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
-                    <td><%=department.getDepId()%></td>
-                    <td><%=department.getDepName()%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/class/addOrUpdateClass.jsp?department_id=<%=department.getDepId()%>"><span class="icon-edit"></span> 修改</a>
-                        <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=department.getDepId()%>')" target="_self">
+                    <td><%=course.getCourseId()%></td>
+                    <td><%=course.getCourseName()%></td>
+                    <td><%=course.getClassId()%></td>
+                    <td><%=course.getCourseYear()%></td>
+                    <td><%=course.getCourseTerm()%></td>
+                    <td><%=course.getCourseHour()%></td>
+                    <td><%=course.getCourseMajor()%></td>
+                    <td><%=course.getCourseGrade()%></td>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/class/addOrUpdateClass.jsp?class_id=<%=course.getCourseId()%>"><span class="icon-edit"></span> 修改</a>
+                        <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=course.getCourseId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
                 </tr>
 
@@ -61,9 +73,9 @@
 <script type="text/javascript">
 
     //单个删除
-    function del(depId){
+    function del(classId){
         if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/department/action_delInstructor.jsp?department_id="+depId,"_self");
+            window.open("<%=path%>/action/business/class/action_delClass.jsp?class_id="+classId,"_self");
         }
     }
 

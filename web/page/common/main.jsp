@@ -26,7 +26,7 @@
 
 
     <h2><span class="icon-user"></span>基本设置</h2>
-    <ul style="display:block">
+    <ul>
         <li><a href="<%=path%>/page/business/admin/updateMsg.jsp" target="right"><span class="icon-caret-right"></span>个人设置</a></li>
         <li><a href="<%=path%>/page/system/password.jsp" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
         <li><a href="<%=path%>/page/page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>
@@ -35,7 +35,7 @@
         <li><a href="<%=path%>/page/column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li>
     </ul>
 
-    <h2><span class="icon-pencil-square-o"></span>二级学院管理</h2>
+    <h2><span class="icon-pencil-square-o"></span>学院管理</h2>
     <ul>
         <li><a href="<%=path%>/action/business/department/action_departmentList.jsp" target="right"><span class="icon-caret-right"></span>二级学院列表</a></li>
         <li><a href="<%=path%>/page/business/department/addOrUpdateDepartment.jsp" target="right"><span class="icon-caret-right"></span>添加二级学院</a></li>
@@ -46,7 +46,18 @@
         <li><a href="<%=path%>/action/business/instructor/action_InstructorList.jsp" target="right"><span class="icon-caret-right"></span>辅导员列表</a></li>
         <li><a href="<%=path%>/page/business/instructor/addOrUpdateInstructor.jsp" target="right"><span class="icon-caret-right"></span>添加辅导员</a></li>
     </ul>
-
+    <h2><span class="icon-pencil-square-o"></span>班级管理</h2>
+    <ul>
+        <li><a href="<%=path%>/action/business/course/action_courseList.jsp" target="right"><span class="icon-caret-right"></span>班级列表</a></li>
+        <li><a href="<%=path%>/page/business/course/addOrUpdateCourse.jsp" target="right"><span class="icon-caret-right"></span>添加班级</a></li>
+        <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
+    </ul>
+    <h2><span class="icon-pencil-square-o"></span>课程管理</h2>
+    <ul>
+        <li><a href="<%=path%>/action/business/course/action_courseList.jsp" target="right"><span class="icon-caret-right"></span>班级列表</a></li>
+        <li><a href="<%=path%>/page/business/course/addOrUpdateCourse.jsp" target="right"><span class="icon-caret-right"></span>添加班级</a></li>
+        <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
+    </ul>
     <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
     <ul>
         <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>

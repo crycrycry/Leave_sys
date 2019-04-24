@@ -13,12 +13,16 @@ public class Course {
 
     private Integer courseHour;
 
+    private String courseMajor;
+
+    private String courseGrade;
+
     public String getCourseId() {
         return courseId;
     }
 
     public void setCourseId(String courseId) {
-        this.courseId = courseId == null ? null : courseId.trim();
+        this.courseId = courseId;
     }
 
     public String getClassId() {
@@ -26,7 +30,7 @@ public class Course {
     }
 
     public void setClassId(String classId) {
-        this.classId = classId == null ? null : classId.trim();
+        this.classId = classId;
     }
 
     public String getCourseName() {
@@ -34,7 +38,7 @@ public class Course {
     }
 
     public void setCourseName(String courseName) {
-        this.courseName = courseName == null ? null : courseName.trim();
+        this.courseName = courseName;
     }
 
     public String getCourseYear() {
@@ -42,7 +46,7 @@ public class Course {
     }
 
     public void setCourseYear(String courseYear) {
-        this.courseYear = courseYear == null ? null : courseYear.trim();
+        this.courseYear = courseYear;
     }
 
     public String getCourseTerm() {
@@ -50,7 +54,7 @@ public class Course {
     }
 
     public void setCourseTerm(String courseTerm) {
-        this.courseTerm = courseTerm == null ? null : courseTerm.trim();
+        this.courseTerm = courseTerm;
     }
 
     public Integer getCourseHour() {
@@ -59,5 +63,21 @@ public class Course {
 
     public void setCourseHour(Integer courseHour) {
         this.courseHour = courseHour;
+    }
+
+    public String getCourseMajor() {
+        return courseMajor;
+    }
+
+    public void setCourseMajor(String courseMajor) {
+        this.courseMajor = courseMajor;
+    }
+
+    public String getCourseGrade() {
+        return courseGrade;
+    }
+
+    public void setCourseGrade(String courseGrade) {
+        this.courseGrade = courseGrade;
     }
 }
