@@ -3,7 +3,7 @@
 <%!public Connection getConn()throws Exception{
     Connection conn=null;
    try{
-         String db_url="jdbc:mysql://127.0.0.1:3306/leave_sys";
+         String db_url="jdbc:mysql://127.0.0.1:3306/leave_sys?useUnicode=true&characterEncoding=UTF-8";
 		   String db_user="root";
 		   String db_pwd="123456";
 		   Class.forName("com.mysql.jdbc.Driver");

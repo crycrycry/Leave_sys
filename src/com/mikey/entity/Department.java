@@ -10,7 +10,7 @@ public class Department {
     }
 
     public void setDepId(String depId) {
-        this.depId = depId == null ? null : depId.trim();
+        this.depId = depId;
     }
 
     public String getDepName() {
@@ -18,6 +18,6 @@ public class Department {
     }
 
     public void setDepName(String depName) {
-        this.depName = depName == null ? null : depName.trim();
+        this.depName = depName;
     }
 }
