@@ -42,7 +42,7 @@
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改个人信息</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="<%=path%>/action/business/department/<%=department_id!=null?"action_updateDepartment.jsp":"action_addDepartment.jsp"%>">
+        <form method="post" class="form-x" action="<%=path%>/action/business/department/<%=department_id!=null?"action_updateInstructor.jsp":"action_addInstructor.jsp"%>">
             <div class="clear"></div>
             <div class="form-group">
                 <div class="label">

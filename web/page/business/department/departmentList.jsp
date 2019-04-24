@@ -63,7 +63,7 @@
     //单个删除
     function del(depId){
         if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/department/action_delDepartment.jsp?department_id="+depId,"_self");
+            window.open("<%=path%>/action/business/department/action_delInstructor.jsp?department_id="+depId,"_self");
         }
     }
 

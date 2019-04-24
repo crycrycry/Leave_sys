@@ -31,5 +31,5 @@
 
     request.setAttribute("msg","添加成功");
 
-    process(request,response,"/action/business/department/action_departmentList.jsp");
+    process(request,response,"/action/business/department/departmentList.jsp");
 %>
