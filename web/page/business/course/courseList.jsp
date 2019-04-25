@@ -56,7 +56,7 @@
                     <td><%=course.getCourseHour()%></td>
                     <td><%=course.getCourseMajor()%></td>
                     <td><%=course.getCourseGrade()%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/class/addOrUpdateClass.jsp?class_id=<%=course.getCourseId()%>"><span class="icon-edit"></span> 修改</a>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/course/addOrUpdateCourse.jsp?course_id=<%=course.getCourseId()%>"><span class="icon-edit"></span> 修改</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=course.getCourseId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
                 </tr>
@@ -73,9 +73,9 @@
 <script type="text/javascript">
 
     //单个删除
-    function del(classId){
+    function del(courseId){
         if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/class/action_delClass.jsp?class_id="+classId,"_self");
+            window.open("<%=path%>/action/business/course/action_delCourse.jsp?course_id="+courseId,"_self");
         }
     }
 

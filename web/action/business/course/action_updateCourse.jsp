@@ -10,31 +10,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/page/common/base.jsp"%>
 <%
+    String course_id = request.getParameter("course_id");
     String class_id = request.getParameter("class_id");
-    String class_name = request.getParameter("class_name");
-    String dep_id = request.getParameter("dep_id");
-    String class_major = request.getParameter("class_major");
-    String class_grade = request.getParameter("class_grade");
+    String course_name = request.getParameter("course_name");
+    String course_year = request.getParameter("course_year");
+    String course_term = request.getParameter("course_term");
+    String course_hour = request.getParameter("course_hour");
+    String course_major = request.getParameter("course_major");
+    String course_grade = request.getParameter("course_grade");
 
-    Connection conn = getConn();
+    try {
 
-    String sql = "update sys_classes set class_name = ?,dep_id = ?,class_major = ?,class_grade = ? where class_id = ?";
+        Connection conn = getConn();
 
-    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        String sql = "update sys_course set class_id = ? , course_name = ? , course_year = ? , course_term = ? , course_hour = ? , course_major = ? , course_grade = ? where course_id = ?";
 
+        System.out.println(class_id + "\t" + class_id + "\t" + course_name + "\t" + course_year + "\t" + course_term + "\t" + course_hour + "\t" + course_major + "\t" + course_grade + "\n" + sql);
 
-    preparedStatement.setString(1,class_name);
-    preparedStatement.setString(2,dep_id);
-    preparedStatement.setString(3,class_major);
-    preparedStatement.setString(4,class_grade);
-    preparedStatement.setString(5,class_id);
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-    preparedStatement.executeUpdate();
+        preparedStatement.setString(1, class_id);
+        preparedStatement.setString(2, course_name);
+        preparedStatement.setString(3, course_year);
+        preparedStatement.setString(4, course_term);
+        preparedStatement.setInt(5, Integer.parseInt(course_hour));
+        preparedStatement.setString(6, course_major);
+        preparedStatement.setString(7, course_grade);
+        preparedStatement.setString(8, course_id);
 
-    close(preparedStatement,conn);
+        preparedStatement.executeUpdate();
 
-    request.setAttribute("msg","修改成功");
+        close(preparedStatement, conn);
 
-    process(request,response,"/action/business/class/action_classList.jsp");
+        request.setAttribute("msg", "修改成功");
+
+        process(request, response, "/action/business/course/action_courseList.jsp");
+
+    }catch (Exception e){
+
+        e.printStackTrace();
+
+        request.setAttribute("msg", "修改失败");
+
+        process(request, response, "/action/business/course/action_courseList.jsp");
+    }
 %>
 

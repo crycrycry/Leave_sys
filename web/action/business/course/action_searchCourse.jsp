@@ -11,9 +11,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%
-    List<Classes> classes = null;
+    List<Course> courses = null;
 
-    Classes classe = null;
+    Course course = null;
 
     String start1 = request.getParameter("start");//开始下标
 
@@ -27,7 +27,7 @@
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_classes where class_name like ? or dep_id like ? or class_major = ? or class_grade = ? limit ?,?";
+    String sql = "select * from sys_course where course_id like ? or class_id like ? or course_name = ? or course_year = ? or course_term like ? or course_hour like ? or course_major like ? or course_grade like ?   limit ?,?";
 
     System.out.println("search_msg:"+search+"\n"+sql);
 
@@ -37,28 +37,36 @@
     preparedStatement.setString(2,"%"+search+"%");
     preparedStatement.setString(3,"%"+search+"%");
     preparedStatement.setString(4,"%"+search+"%");
-    preparedStatement.setInt(5,start);
-    preparedStatement.setInt(6,total);
+    preparedStatement.setString(5,"%"+search+"%");
+    preparedStatement.setString(6,"%"+search+"%");
+    preparedStatement.setString(7,"%"+search+"%");
+    preparedStatement.setString(8,"%"+search+"%");
+    preparedStatement.setInt(9,start);
+    preparedStatement.setInt(10,total);
 
     ResultSet resultSet = preparedStatement.executeQuery();
 
-    classes = new ArrayList<Classes>();
+    courses = new ArrayList<Course>();
 
     while (resultSet.next()){
-        classe = new Classes();
 
-        classe.setClassId(resultSet.getString("class_id"));
-        classe.setClassName(resultSet.getString("class_name"));
-        classe.setDepId(resultSet.getString("dep_id"));
-        classe.setClassMajor(resultSet.getString("class_major"));
-        classe.setClassGrade(resultSet.getString("class_grade"));
+        course = new Course();
 
-        classes.add(classe);
+        course.setCourseId(resultSet.getString("course_id"));
+        course.setClassId(resultSet.getString("class_id"));
+        course.setCourseName(resultSet.getString("course_name"));
+        course.setCourseYear(resultSet.getString("course_year"));
+        course.setCourseTerm(resultSet.getString("course_term"));
+        course.setCourseHour(resultSet.getInt("course_hour"));
+        course.setCourseMajor(resultSet.getString("course_major"));
+        course.setCourseGrade(resultSet.getString("course_grade"));
+
+        courses.add(course);
     }
 
-    request.setAttribute("classes",classes);
+    request.setAttribute("courses",courses);
 
-    process(request,response,"/page/business/class/classList.jsp");
+    process(request,response,"/page/business/course/courseList.jsp");
 
 %>
 

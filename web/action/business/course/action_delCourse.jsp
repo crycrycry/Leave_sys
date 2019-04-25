@@ -15,7 +15,7 @@
 
     Connection conn = getConn();
 
-    String sql = "delete from sys_course where class_id = ?";
+    String sql = "delete from sys_course where course_id = ?";
 
     System.out.println(course_id+"\n"+sql);
 
@@ -29,5 +29,5 @@
 
     request.setAttribute("msg","删除成功");
 
-    process(request,response,"/action/business/class/action_classList.jsp");
+    process(request,response,"/action/business/course/action_courseList.jsp");
 %>

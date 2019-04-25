@@ -54,8 +54,8 @@
     </ul>
     <h2><span class="icon-pencil-square-o"></span>课程管理</h2>
     <ul>
-        <li><a href="<%=path%>/action/business/course/action_courseList.jsp" target="right"><span class="icon-caret-right"></span>班级列表</a></li>
-        <li><a href="<%=path%>/page/business/course/addOrUpdateCourse.jsp" target="right"><span class="icon-caret-right"></span>添加班级</a></li>
+        <li><a href="<%=path%>/action/business/course/action_courseList.jsp" target="right"><span class="icon-caret-right"></span>课程列表</a></li>
+        <li><a href="<%=path%>/page/business/course/addOrUpdateCourse.jsp" target="right"><span class="icon-caret-right"></span>添加课程</a></li>
         <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
     </ul>
     <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>

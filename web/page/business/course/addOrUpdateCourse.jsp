@@ -55,7 +55,7 @@
                     <label>课程编号：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="course_id" <%if (course!=null){out.print("readonly='readonly'");}%> value="<%=course!=null?course.getClassId():""%>"  data-validate="required:课程编号不能为空" />
+                    <input type="text" class="input w50" name="course_id" <%if (course!=null){out.print("readonly='readonly'");}%> value="<%=course!=null?course.getCourseId():""%>"  data-validate="required:课程编号不能为空" />
                     <div class="tips"></div>
                 </div>
             </div>

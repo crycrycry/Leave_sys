@@ -10,6 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/page/common/base.jsp"%>
 <%
+    String course_id = request.getParameter("course_id");
     String class_id = request.getParameter("class_id");
     String course_name = request.getParameter("course_name");
     String course_year = request.getParameter("course_year");
@@ -20,17 +21,17 @@
 
     Connection conn = getConn();
 
-    String sql = "insert sys_course(class_id,course_name,course_year,course_term,course_hour,course_major,course_grade) value (?,?,?,?,?,?,?) ";
+    String sql = "insert sys_course(course_id,class_id,course_name,course_year,course_term,course_hour,course_major,course_grade) value (?,?,?,?,?,?,?,?) ";
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
-    preparedStatement.setString(1,class_id);
-    preparedStatement.setString(2,course_name);
-    preparedStatement.setString(3,course_year);
-    preparedStatement.setString(4,course_term);
-    preparedStatement.setString(5,course_hour);
-    preparedStatement.setString(6,course_major);
-    preparedStatement.setString(7,course_grade);
+    preparedStatement.setString(1,course_id);
+    preparedStatement.setString(2,class_id);
+    preparedStatement.setString(3,course_name);
+    preparedStatement.setString(4,course_year);
+    preparedStatement.setString(5,course_term);
+    preparedStatement.setString(6,course_hour);
+    preparedStatement.setString(7,course_major);
+    preparedStatement.setString(8,course_grade);
 
     preparedStatement.execute();
 
