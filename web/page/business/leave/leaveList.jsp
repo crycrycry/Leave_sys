@@ -12,9 +12,9 @@
 <%@ include file="/page/utils/database.jsp"%>
 
 <%
-    List<Course> courses = new ArrayList<Course>();
+    List<Leave> leaves = new ArrayList<Leave>();
 
-    courses = (List<Course>) request.getAttribute("courses");
+    leaves = (List<Leave>) request.getAttribute("leaves");
 %>
 <html>
 <body>
@@ -29,35 +29,36 @@
         </div>
         <table class="table table-hover text-center">
             <tr>
+                <%--请假课程、请假事由,请假天数--%>
                 <th width="100" style="text-align:left; padding-left:20px;">序号</th>
-                <th width="10%">课程编号</th>
-                <th width="10%">课程名称</th>
-                <th width="10%">班级名称</th>
-                <th width="10%">学年</th>
-                <th width="10%">学期</th>
-                <th width="10%">学时</th>
-                <th width="10%">所属专业</th>
-                <th width="10%">所在年级</th>
+                <th width="10%">ID</th>
+                <th width="10%">请假课程</th>
+                <th width="10%">请假事由</th>
+                <th width="10%">请假天数</th>
+                <th width="10%">请假时间</th>
+                <th width="10%">请假状态</th>
+                <th width="10%">审核时间</th>
+                <th width="10%">审核意见</th>
                 <th width="310">操作</th>
             </tr>
             <volist name="list" id="vo">
 
                 <%
                     int i = 0;
-                    for (Course course : courses) {
+                    for (Leave leave : leaves) {
                 %>
                 <tr>
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
-                    <td><%=course.getCourseId()%></td>
-                    <td><%=course.getCourseName()%></td>
-                    <td><%=course.getClassId()%></td>
-                    <td><%=course.getCourseYear()%></td>
-                    <td><%=course.getCourseTerm()%></td>
-                    <td><%=course.getCourseHour()%></td>
-                    <td><%=course.getCourseMajor()%></td>
-                    <td><%=course.getCourseGrade()%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/course/addOrUpdateCourse.jsp?course_id=<%=course.getCourseId()%>"><span class="icon-edit"></span> 修改</a>
-                        <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=course.getCourseId()%>')" target="_self">
+                    <td><%=leave.getLeaveId()%></td>
+                    <td><%=leave.getCourseId()%></td>
+                    <td><%=leave.getLeaveReason()%></td>
+                    <td><%=leave.getLeaveDaynum()%></td>
+                    <td><%=leave.getLeaveApplytime()%></td>
+                    <td><%=leave.getLeaveStatus()%></td>
+                    <td><%=leave.getLeaveAudittime()%></td>
+                    <td><%=leave.getLeaveOpinion()%></td>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?course_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span> 修改</a>
+                        <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
                 </tr>
 
@@ -73,9 +74,9 @@
 <script type="text/javascript">
 
     //单个删除
-    function del(courseId){
+    function del(leaveId){
         if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/course/action_delCourse.jsp?course_id="+courseId,"_self");
+            window.open("<%=path%>/action/business/leave/action_delLeave.jsp?Leave_id="+leaveId,"_self");
         }
     }
 

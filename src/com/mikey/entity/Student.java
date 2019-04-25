@@ -17,7 +17,7 @@ public class Student {
 
     private String stuContact;
 
-    private String stuContacttel;
+    private String stuContactTel;
 
     public String getStuId() {
         return stuId;
@@ -83,11 +83,11 @@ public class Student {
         this.stuContact = stuContact;
     }
 
-    public String getStuContacttel() {
-        return stuContacttel;
+    public String getStuContactTel() {
+        return stuContactTel;
     }
 
-    public void setStuContacttel(String stuContacttel) {
-        this.stuContacttel = stuContacttel;
+    public void setStuContactTel(String stuContactTel) {
+        this.stuContactTel = stuContactTel;
     }
 }

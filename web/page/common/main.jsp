@@ -41,7 +41,7 @@
         <li><a href="<%=path%>/page/business/department/addOrUpdateDepartment.jsp" target="right"><span class="icon-caret-right"></span>添加二级学院</a></li>
         <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
     </ul>
-    <h2><span class="icon-pencil-square-o"></span>辅导员管理</h2>
+    <h2><span class="icon-pencil-square-o"></span>教师管理</h2>
     <ul>
         <li><a href="<%=path%>/action/business/instructor/action_InstructorList.jsp" target="right"><span class="icon-caret-right"></span>辅导员列表</a></li>
         <li><a href="<%=path%>/page/business/instructor/addOrUpdateInstructor.jsp" target="right"><span class="icon-caret-right"></span>添加辅导员</a></li>
@@ -58,11 +58,27 @@
         <li><a href="<%=path%>/page/business/course/addOrUpdateCourse.jsp" target="right"><span class="icon-caret-right"></span>添加课程</a></li>
         <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
     </ul>
-    <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
+    <h2><span class="icon-pencil-square-o"></span>学生管理</h2>
+    <ul>
+        <li><a href="<%=path%>/action/business/student/action_studentList.jsp" target="right"><span class="icon-caret-right"></span>学生列表</a></li>
+        <li><a href="<%=path%>/page/business/student/addOrUpdateStudent.jsp" target="right"><span class="icon-caret-right"></span>添加学生</a></li>
+        <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
+    </ul>
+    <h2><span class="icon-pencil-square-o"></span>请假管理</h2>
+    <ul>
+        <li><a href="<%=path%>/action/business/leave/action_leaveList.jsp" target="right"><span class="icon-caret-right"></span>假条列表</a></li>
+        <li><a href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp" target="right"><span class="icon-caret-right"></span>添加假条</a></li>
+        <%--<li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>--%>
+    </ul>
+    <h2><span class="icon-pencil-square-o"></span>审批管理</h2>
     <ul>
         <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
         <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>添加内容</a></li>
         <li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
+    </ul>
+    <h2><span class="icon-pencil-square-o"></span>导出管理</h2>
+    <ul>
+        <li><a href="<%=path%>/action/business/leave/action_leaveList.jsp" target="right"><span class="icon-caret-right"></span>导出列表</a></li>
     </ul>
     <h2><span class="icon-user"></span>课堂考勤</h2>
     <ul>

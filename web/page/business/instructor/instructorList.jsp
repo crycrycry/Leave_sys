@@ -20,7 +20,7 @@
 <body>
 <%--<form method="post" action="" id="listform">--%>
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder">二级学院列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+        <div class="panel-head"><strong class="icon-reorder">辅导员列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
             <form action="<%=path%>/action/business/instructor/action_searchInstructor.jsp" method="post">
                     <input type="text" placeholder="请输入二级学院名称" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
