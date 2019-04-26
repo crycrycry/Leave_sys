@@ -3,6 +3,7 @@ package com.mikey.entity;
 import java.util.Date;
 
 public class Leave {
+
     private String leaveId;
 
     private String courseId;
@@ -21,12 +22,22 @@ public class Leave {
 
     private String leaveOpinion;
 
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public String getLeaveId() {
         return leaveId;
     }
 
     public void setLeaveId(String leaveId) {
-        this.leaveId = leaveId == null ? null : leaveId.trim();
+        this.leaveId = leaveId;
     }
 
     public String getCourseId() {
@@ -34,7 +45,7 @@ public class Leave {
     }
 
     public void setCourseId(String courseId) {
-        this.courseId = courseId == null ? null : courseId.trim();
+        this.courseId = courseId;
     }
 
     public String getLeaveReason() {
@@ -42,7 +53,7 @@ public class Leave {
     }
 
     public void setLeaveReason(String leaveReason) {
-        this.leaveReason = leaveReason == null ? null : leaveReason.trim();
+        this.leaveReason = leaveReason;
     }
 
     public Integer getLeaveDaynum() {
@@ -58,7 +69,7 @@ public class Leave {
     }
 
     public void setStuId(String stuId) {
-        this.stuId = stuId == null ? null : stuId.trim();
+        this.stuId = stuId;
     }
 
     public Date getLeaveApplytime() {
@@ -74,7 +85,7 @@ public class Leave {
     }
 
     public void setLeaveStatus(String leaveStatus) {
-        this.leaveStatus = leaveStatus == null ? null : leaveStatus.trim();
+        this.leaveStatus = leaveStatus;
     }
 
     public Date getLeaveAudittime() {
@@ -90,7 +101,7 @@ public class Leave {
     }
 
     public void setLeaveOpinion(String leaveOpinion) {
-        this.leaveOpinion = leaveOpinion == null ? null : leaveOpinion.trim();
+        this.leaveOpinion = leaveOpinion;
     }
 
     @Override

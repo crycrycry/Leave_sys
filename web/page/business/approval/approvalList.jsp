@@ -31,12 +31,11 @@
             <tr>
                 <%--请假课程、请假事由,请假天数--%>
                 <th width="100" style="text-align:left; padding-left:20px;">序号</th>
-                <th width="10%">ID</th>
+                <th width="10%">学生姓名</th>
                 <th width="10%">请假课程</th>
                 <th width="10%">请假事由</th>
                 <th width="10%">请假天数</th>
                 <th width="10%">请假时间</th>
-                <th width="10%">请假状态</th>
                 <th width="10%">审核时间</th>
                 <th width="10%">审核意见</th>
                 <th width="310">操作</th>
@@ -49,28 +48,17 @@
                 %>
                 <tr>
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
-                    <td><%=leave.getLeaveId()%></td>
+                    <td><%=leave.getStudent().getStuName()%></td>
                     <td><%=leave.getCourseId()%></td>
                     <td><%=leave.getLeaveReason()%></td>
                     <td><%=leave.getLeaveDaynum()%></td>
                     <td pattern="yyyy-MM-dd"><%=leave.getLeaveApplytime()%></td>
-
-                    <td><%if (leave.getLeaveStatus()!=null){
-                        if (leave.getLeaveStatus().equals("0")) {
-                            out.print("未审核");
-                        }else if (leave.getLeaveStatus().equals("1")) {
-                            out.print("已审核");
-                        }else if (leave.getLeaveStatus().equals("0")) {
-                            out.print("不同意");
-                        }
-                    }
-                    %></td>
-
                     <td><%=leave.getLeaveAudittime()!=null?leave.getLeaveAudittime():"暂无"%></td>
                     <td><%=leave.getLeaveOpinion()!=null?leave.getLeaveOpinion():"暂无"%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span> 修改</a>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/approval/approvalDeatil.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>预览</a>
+                        <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>同意</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
-                            <span class="icon-trash-o"></span> 删除</a> </div></td>
+                            <span class="icon-trash-o"></span>不同意</a> </div></td>
                 </tr>
 
                 <%
@@ -83,11 +71,16 @@
     </div>
 <%--</form>--%>
 <script type="text/javascript">
-
-    //单个删除
-    function del(leaveId){
+    //不同意
+    function pass(leaveId){
         if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/leave/action_delLeave.jsp?leave_id="+leaveId,"_self");
+            window.open("<%=path%>/action/business/approval/action_delLeave.jsp?leave_id="+leaveId,"_self");
+        }
+    }
+    //不同意
+    function nopass(leaveId){
+        if(confirm("您确定要删除吗?")){
+            window.open("<%=path%>/action/business/approval/action_delLeave.jsp?leave_id="+leaveId,"_self");
         }
     }
 

@@ -72,9 +72,7 @@
     </ul>
     <h2><span class="icon-pencil-square-o"></span>审批管理</h2>
     <ul>
-        <li><a href="<%=path%>/page/list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
-        <li><a href="<%=path%>/page/add.html" target="right"><span class="icon-caret-right"></span>添加内容</a></li>
-        <li><a href="<%=path%>/page/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
+        <li><a href="<%=path%>/action/business/approval/action_approvalList.jsp" target="right"><span class="icon-caret-right"></span>假条列表</a></li>
     </ul>
     <h2><span class="icon-pencil-square-o"></span>导出管理</h2>
     <ul>

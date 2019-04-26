@@ -21,7 +21,7 @@
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-    preparedStatement.setString(1,leave_id_id);
+    preparedStatement.setString(1,leave_id);
 
     preparedStatement.execute();
 
