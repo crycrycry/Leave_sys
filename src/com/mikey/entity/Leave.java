@@ -92,4 +92,19 @@ public class Leave {
     public void setLeaveOpinion(String leaveOpinion) {
         this.leaveOpinion = leaveOpinion == null ? null : leaveOpinion.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Leave{" +
+                "leaveId='" + leaveId + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", leaveReason='" + leaveReason + '\'' +
+                ", leaveDaynum=" + leaveDaynum +
+                ", stuId='" + stuId + '\'' +
+                ", leaveApplytime=" + leaveApplytime +
+                ", leaveStatus='" + leaveStatus + '\'' +
+                ", leaveAudittime=" + leaveAudittime +
+                ", leaveOpinion='" + leaveOpinion + '\'' +
+                '}';
+    }
 }

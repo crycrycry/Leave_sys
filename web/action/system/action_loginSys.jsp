@@ -54,7 +54,7 @@
                     student.setStuSex(resultSet1.getString("stu_sex"));
                     student.setStuAddress(resultSet1.getString("stu_address"));
                     student.setStuTelephone(resultSet1.getString("stu_telephone"));
-                    student.setStuContact(resultSet1.getString("stu_contact_tel"));
+                    student.setStuContact(resultSet1.getString("stu_contactTel"));
 
                     user.setStudent(student);
                     close(preparedStatement1,resultSet1);

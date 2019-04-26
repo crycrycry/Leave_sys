@@ -1,4 +1,6 @@
 <%@ page import="java.sql.Connection" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ include file="/page/utils/database.jsp"%>
 <%--
   Created by IntelliJ IDEA.
@@ -11,27 +13,33 @@
 <%@ include file="/page/common/base.jsp"%>
 <%
     String course_id = request.getParameter("course_id");
-    String class_id = request.getParameter("class_id");
-    String course_name = request.getParameter("course_name");
-    String course_year = request.getParameter("course_year");
-    String course_term = request.getParameter("course_term");
-    String course_hour = request.getParameter("course_hour");
-    String course_major = request.getParameter("course_major");
-    String course_grade = request.getParameter("course_grade");
+    String leave_reason = request.getParameter("leave_reason");
+    String leave_dayNum = request.getParameter("leave_dayNum");
+    String leave_applyTime = request.getParameter("leave_applyTime");
+
+    HttpSession sessions = request.getSession();
+
+    User user = (User) sessions.getAttribute("user");
 
     Connection conn = getConn();
 
-    String sql = "insert sys_course(course_id,class_id,course_name,course_year,course_term,course_hour,course_major,course_grade) value (?,?,?,?,?,?,?,?) ";
+    Date date = new Date();
+
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmsss");
+
+    String leave_id = sdf.format(date) + (int)(Math.random()*(999-100+1));
+
+    System.out.println(leave_id);
+
+    String sql = "insert sys_leave(leave_id,course_id,leave_reason,leave_dayNum,stu_id,leave_applyTime) value (?,?,?,?,?,?) ";
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
-    preparedStatement.setString(1,course_id);
-    preparedStatement.setString(2,class_id);
-    preparedStatement.setString(3,course_name);
-    preparedStatement.setString(4,course_year);
-    preparedStatement.setString(5,course_term);
-    preparedStatement.setString(6,course_hour);
-    preparedStatement.setString(7,course_major);
-    preparedStatement.setString(8,course_grade);
+    preparedStatement.setString(1,leave_id);
+    preparedStatement.setString(2,course_id);
+    preparedStatement.setString(3,leave_reason);
+    preparedStatement.setString(4,leave_dayNum);
+    preparedStatement.setString(5,user.getStudent().getStuId());
+    preparedStatement.setString(6,leave_applyTime);
 
     preparedStatement.execute();
 
@@ -39,5 +47,5 @@
 
     request.setAttribute("msg","添加成功");
 
-    process(request,response,"/action/business/course/action_courseList.jsp");
+    process(request,response,"/action/business/leave/action_leaveList.jsp");
 %>

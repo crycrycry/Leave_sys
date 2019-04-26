@@ -11,17 +11,17 @@
 <%@ include file="/page/common/base.jsp"%>
 <%@ include file="/page/utils/database.jsp"%>
 <%
-    String course_id = request.getParameter("course_id");
+    String leave_id = request.getParameter("leave_id");
 
     Connection conn = getConn();
 
-    String sql = "delete from sys_course where course_id = ?";
+    String sql = "delete from sys_leave where leave_id = ?";
 
-    System.out.println(course_id+"\n"+sql);
+    System.out.println(leave_id+"\n"+sql);
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-    preparedStatement.setString(1,course_id);
+    preparedStatement.setString(1,leave_id_id);
 
     preparedStatement.execute();
 
@@ -29,5 +29,5 @@
 
     request.setAttribute("msg","删除成功");
 
-    process(request,response,"/action/business/course/action_courseList.jsp");
+    process(request,response,"/action/business/leave/action_leaveList.jsp");
 %>

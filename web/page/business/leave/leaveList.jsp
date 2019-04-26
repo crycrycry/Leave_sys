@@ -22,7 +22,7 @@
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder">课程列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
-            <form action="<%=path%>/action/business/class/action_searchClass.jsp" method="post">
+            <form action="<%=path%>/action/business/leave/action_searchLeave.jsp" method="post">
                     <input type="text" placeholder="请输入二级学院名称" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <input class="button border-main icon-search" type="submit" value="搜索"></li>
             </form>
@@ -53,11 +53,11 @@
                     <td><%=leave.getCourseId()%></td>
                     <td><%=leave.getLeaveReason()%></td>
                     <td><%=leave.getLeaveDaynum()%></td>
-                    <td><%=leave.getLeaveApplytime()%></td>
-                    <td><%=leave.getLeaveStatus()%></td>
-                    <td><%=leave.getLeaveAudittime()%></td>
-                    <td><%=leave.getLeaveOpinion()%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?course_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span> 修改</a>
+                    <td pattern="yyyy-MM-dd"><%=leave.getLeaveApplytime()%></td>
+                    <td><%=leave.getLeaveStatus()!=null?leave.getLeaveStatus():"暂无"%></td>
+                    <td><%=leave.getLeaveAudittime()!=null?leave.getLeaveAudittime():"暂无"%></td>
+                    <td><%=leave.getLeaveOpinion()!=null?leave.getLeaveOpinion():"暂无"%></td>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span> 修改</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
                 </tr>
@@ -79,6 +79,7 @@
             window.open("<%=path%>/action/business/leave/action_delLeave.jsp?Leave_id="+leaveId,"_self");
         }
     }
+
 
     //全选
     $("#checkall").click(function(){
