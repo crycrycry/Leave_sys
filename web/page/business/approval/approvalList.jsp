@@ -22,7 +22,7 @@
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder">假条列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
-            <form action="<%=path%>/action/business/leave/action_searchLeave.jsp" method="post">
+            <form action="<%=path%>/action/business/approval/action_searchApproval.jsp" method="post">
                     <input type="text" placeholder="请输入查询条件" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <input class="button border-main icon-search" type="submit" value="搜索"></li>
             </form>
@@ -52,13 +52,21 @@
                     <td><%=leave.getCourseId()%></td>
                     <td><%=leave.getLeaveReason()%></td>
                     <td><%=leave.getLeaveDaynum()%></td>
-                    <td pattern="yyyy-MM-dd"><%=leave.getLeaveApplytime()%></td>
+                    <%--<fmt:formatDate value=<%=leave.getLeaveApplytime()%> pattern="yyyy-MM-dd HH:mm:ss"/>--%>
+                    <td><%=leave.getLeaveApplytime()%></td>
                     <td><%=leave.getLeaveAudittime()!=null?leave.getLeaveAudittime():"暂无"%></td>
                     <td><%=leave.getLeaveOpinion()!=null?leave.getLeaveOpinion():"暂无"%></td>
                     <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/approval/approvalDeatil.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>预览</a>
+                     <%
+                         if (leave.getLeaveStatus().equals("0")){
+                         %>
                         <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>同意</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
-                            <span class="icon-trash-o"></span>不同意</a> </div></td>
+                            <span class="icon-trash-o"></span>不同意</a>
+                        <%
+                            }
+                        %>
+                    </div></td>
                 </tr>
 
                 <%

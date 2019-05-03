@@ -92,7 +92,7 @@
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>预览假条信息</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="<%=path%>/action/business/approval/action_updateApproval.jsp"%>">
+        <form name="approvalform" method="post" class="form-x">
             <div class="clear"></div>
             <%
                 if (leave!=null){
@@ -186,16 +186,26 @@
                     <%
                     if (leave.getLeaveStatus().equals("0")){
                     %>
-                    <button class="button bg-main icon-check-square-o" type="submit"> 同意</button>
-                    <a href="<%=path%>/action/business/approval/action_updateApproval.jsp?leave_status=3" class="button bg-main icon-check-square-o" type="button"> 不同意</a>
+                    <button class="button bg-main icon-check-square-o" type="button" onclick="pass();"> 同意</button>
+                    <button class="button bg-main icon-warning" type="button" onclick="nopass();"> 不同意</button>
                     <%
                         }
                     %>
-                    <button class="button bg-main icon-check-square-o" type="button"> 返回</button>
+                    <a href="<%=path%>/action/business/approval/action_approvalList.jsp" target="right" class="button bg-main"> 返  回</a>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<script>
+    function pass() {
+        document.approvalform.action="<%=path%>/action/business/approval/action_updateApproval.jsp?leave_status=1";
+        document.approvalform.submit();
+    }
+    function nopass() {
+        document.approvalform.action="<%=path%>/action/business/approval/action_updateApproval.jsp?leave_status=2";
+        document.approvalform.submit();
+    }
+</script>
 </body></html>
 

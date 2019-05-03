@@ -13,6 +13,8 @@
 <%
     List<Leave> leaves = null;
 
+    Student student = null;
+
     Leave leave = null;
 
     String start1 = request.getParameter("start");//开始下标
@@ -62,11 +64,35 @@
         leave.setLeaveAudittime(resultSet.getTime("leave_auditTime"));
         leave.setLeaveOpinion(resultSet.getString("leave_opinion"));
 
+        String sql_student = "select * from sys_student ss where ss.stu_id = ?";
+
+        PreparedStatement preparedStatement_student = conn.prepareStatement(sql_student);
+
+        preparedStatement_student.setString(1,leave.getStuId());
+
+        ResultSet stu= preparedStatement_student.executeQuery();
+
+        while (stu.next()) {
+
+            student = new Student();
+
+            student.setStuId(resultSet.getString("stu_id"));
+            student.setUserId(resultSet.getInt("user_id"));
+            student.setClassId(resultSet.getString("class_id"));
+            student.setStuName(resultSet.getString("stu_name"));
+            student.setStuSex(resultSet.getString("stu_sex"));
+            student.setStuAddress(resultSet.getString("stu_address"));
+            student.setStuTelephone(resultSet.getString("stu_telephone"));
+            student.setStuContact(resultSet.getString("stu_contact"));
+            student.setStuContactTel(resultSet.getString("stu_contactTel"));
+
+            leave.setStudent(student);
+        }
         leaves.add(leave);
     }
 
     request.setAttribute("leaves",leaves);
 
-    process(request,response,"/page/business/leave/leaveList.jsp");
+    process(request,response,"/page/business/approval/approvalList.jsp");
 %>
 
