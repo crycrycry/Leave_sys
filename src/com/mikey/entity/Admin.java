@@ -50,4 +50,15 @@ public class Admin {
     public void setAdminTelephone(String adminTelephone) {
         this.adminTelephone = adminTelephone == null ? null : adminTelephone.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminId='" + adminId + '\'' +
+                ", userId=" + userId +
+                ", adminPassword='" + adminPassword + '\'' +
+                ", adminName='" + adminName + '\'' +
+                ", adminTelephone='" + adminTelephone + '\'' +
+                '}';
+    }
 }

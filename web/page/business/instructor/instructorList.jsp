@@ -15,6 +15,8 @@
     List<Instructor> instructors = new ArrayList<Instructor>();
 
     instructors = (List<Instructor>) request.getAttribute("instructors");
+
+    List<Department> departments = (List<Department>) request.getAttribute("departments");
 %>
 <html>
 <body>
@@ -25,6 +27,8 @@
             <form action="<%=path%>/action/business/instructor/action_searchInstructor.jsp" method="post">
                     <input type="text" placeholder="请输入查询条件" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <input class="button border-main icon-search" type="submit" value="搜索"></li>
+                <button type="button" class="button border-yellow" onclick="window.location.href='<%=path%>/page/business/instructor/addOrUpdateInstructor.jsp'"><span class="icon-plus-square-o"></span> 添加辅导员</button>
+
             </form>
         </div>
         <table class="table table-hover text-center">
@@ -45,7 +49,15 @@
                 <tr>
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
                     <td><%=instructor.getInstName()%></td>
-                    <td><%=instructor.getDepId()%></td>
+                    <td><%
+                        if (departments!=null&&departments.size()>0){
+                        for (Department d:departments) {
+                            if (instructor.getDepId().equals(d.getDepId())){
+                                out.print(d.getDepName());
+                            }
+                        }
+                        }
+                    %></td>
                     <td><%=instructor.getInstTelephone()%></td>
                     <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/instructor/addOrUpdateInstructor.jsp?user_id=<%=instructor.getUserId()%>"><span class="icon-edit"></span> 修改</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=instructor.getUserId()%>')" target="_self">

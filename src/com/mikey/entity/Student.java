@@ -90,4 +90,19 @@ public class Student {
     public void setStuContactTel(String stuContactTel) {
         this.stuContactTel = stuContactTel;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "stuId='" + stuId + '\'' +
+                ", userId=" + userId +
+                ", classId='" + classId + '\'' +
+                ", stuName='" + stuName + '\'' +
+                ", stuSex='" + stuSex + '\'' +
+                ", stuAddress='" + stuAddress + '\'' +
+                ", stuTelephone='" + stuTelephone + '\'' +
+                ", stuContact='" + stuContact + '\'' +
+                ", stuContactTel='" + stuContactTel + '\'' +
+                '}';
+    }
 }

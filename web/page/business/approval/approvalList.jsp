@@ -38,6 +38,7 @@
                 <th width="10%">请假时间</th>
                 <th width="10%">审核时间</th>
                 <th width="10%">审核意见</th>
+                <th width="10%">状态</th>
                 <th width="310">操作</th>
             </tr>
             <volist name="list" id="vo">
@@ -56,6 +57,18 @@
                     <td><%=leave.getLeaveApplytime()%></td>
                     <td><%=leave.getLeaveAudittime()!=null?leave.getLeaveAudittime():"暂无"%></td>
                     <td><%=leave.getLeaveOpinion()!=null?leave.getLeaveOpinion():"暂无"%></td>
+                    <td><%
+                        switch (Integer.parseInt(leave.getLeaveStatus())){
+                        case 0:
+                            out.print("待审批");
+                            break;
+                        case 1:
+                            out.print("已通过");
+                            break;
+                        case 2:
+                            out.print("未通过");
+                            break;
+                    }%></td>
                     <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/approval/approvalDeatil.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>预览</a>
                      <%
                          if (leave.getLeaveStatus().equals("0")){

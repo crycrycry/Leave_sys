@@ -12,9 +12,11 @@
 <%@ include file="/page/utils/database.jsp"%>
 
 <%
-    List<Leave> leaves = new ArrayList<Leave>();
+    List<Leave> leaves = (List<Leave>) request.getAttribute("leaves");//假条
 
-    leaves = (List<Leave>) request.getAttribute("leaves");
+    List<String> terms = (List<String>) request.getAttribute("terms");//学期
+
+    List<Classes> classes = (List<Classes>) request.getAttribute("classes");//班级
 %>
 <html>
 <body>
@@ -22,61 +24,89 @@
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder">假条列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
-            <form action="<%=path%>/action/business/leave/action_searchLeave.jsp" method="post">
-                    <input type="text" placeholder="请输入查询条件" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
-                    <input class="button border-main icon-search" type="submit" value="搜索"></li>
-                <button type="button" class="button border-yellow" onclick="window.location.href='<%=path%>/page/business/leave/addOrUpdateLeave.jsp'"><span class="icon-plus-square-o"></span> 添加假条</button>
-
+            <form name="searchOrOutput" method="post" action="<%=path%>/action/business/export/action_searchLeave.jsp">
+            <ul class="search" style="padding-left:10px;">
+                <li>选择学期
+                    <select name="team" class="input" onchange="changesearch()" style="width:60px; line-height:17px; display:inline-block">
+                        <%
+                            for (String team: terms){
+                        %>
+                        <option value="<%=team%>"><%=team%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                    &nbsp;&nbsp;
+                   选择班级
+                </li>
+                    <li>
+                        <select name="classes" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
+                            <%
+                                for (Classes classe:classes) {
+                            %>
+                            <option value="<%=classe.getClassId()%>"><%=classe.getClassName()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+                    </li>
+                <li>
+                    <input type="text" placeholder="请输入搜索关键字" name="searchkey" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                    <button href="javascript:void(0)" class="button border-main icon-search" type="submit" > 搜索</button></li>
+                <li>
+                    <%
+                        if (leaves!=null){
+                    %>
+                    <tr>
+                        <td width="310">
+                            <button class="button border-main" onclick="exportExcel();">导出Excel</button>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </li>
+            </ul>
             </form>
         </div>
+
         <table class="table table-hover text-center">
             <tr>
                 <%--请假课程、请假事由,请假天数--%>
                 <th width="100" style="text-align:left; padding-left:20px;">序号</th>
-                <th width="10%">ID</th>
-                <th width="10%">请假课程</th>
-                <th width="10%">请假事由</th>
-                <th width="10%">请假天数</th>
-                <th width="10%">请假时间</th>
-                <th width="10%">请假状态</th>
-                <th width="10%">审核时间</th>
-                <th width="10%">审核意见</th>
-                <th width="310">操作</th>
+                <th>学生姓名</th>
+                <th>请假课程</th>
+                <th>请假事由</th>
+                <th>请假天数</th>
+                <th>请假时间</th>
+                <th>审核时间</th>
+                <th>审核意见</th>
+                    <th>操作</th>
             </tr>
             <volist name="list" id="vo">
-
                 <%
+                    if (leaves!=null){
                     int i = 0;
                     for (Leave leave : leaves) {
                 %>
                 <tr>
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
-                    <td><%=leave.getLeaveId()%></td>
-                    <td><%=leave.getCourseId()%></td>
+                    <td><%=leave.getStudent().getStuName()%></td>
+                    <td><%=leave.getCourse().getCourseName()%></td>
                     <td><%=leave.getLeaveReason()%></td>
                     <td><%=leave.getLeaveDaynum()%></td>
-                    <td pattern="yyyy-MM-dd"><%=leave.getLeaveApplytime()%></td>
-
-                    <td><%if (leave.getLeaveStatus()!=null){
-                        if (leave.getLeaveStatus().equals("0")) {
-                            out.print("未审核");
-                        }else if (leave.getLeaveStatus().equals("1")) {
-                            out.print("已审核");
-                        }else if (leave.getLeaveStatus().equals("0")) {
-                            out.print("不同意");
-                        }
-                    }
-                    %></td>
-
+                    <td><%=leave.getLeaveApplytime()%></td>
                     <td><%=leave.getLeaveAudittime()!=null?leave.getLeaveAudittime():"暂无"%></td>
                     <td><%=leave.getLeaveOpinion()!=null?leave.getLeaveOpinion():"暂无"%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span> 修改</a>
-                        <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
-                            <span class="icon-trash-o"></span> 删除</a> </div></td>
+                    <td>
+                    <div>
+                        <a class="button border-main" href="<%=path%>/page/business/export/leaveDeatil.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>预览</a>
+                    </div>
+                    </td>
                 </tr>
 
                 <%
-                    }
+                    }}
                 %>
                 <tr>
                     <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
@@ -86,13 +116,11 @@
 <%--</form>--%>
 <script type="text/javascript">
 
-    //单个删除
-    function del(leaveId){
-        if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/leave/action_delLeave.jsp?leave_id="+leaveId,"_self");
-        }
-    }
 
+    function exportExcel(){
+        document.searchOrOutput.action="<%=path%>/action/business/export/action_OutputExcel.jsp";
+        document.searchOrOutput.submit();
+    }
 
     //全选
     $("#checkall").click(function(){

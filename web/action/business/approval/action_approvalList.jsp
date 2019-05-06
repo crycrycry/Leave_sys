@@ -24,6 +24,10 @@
     Integer start=start1!=null&&start1!=""?Integer.parseInt(start1):0;
     Integer total=total1!=null&&total1!=""?Integer.parseInt(total1):Integer.MAX_VALUE;
 
+    HttpSession sessions = request.getSession();
+
+    User user = (User) sessions.getAttribute("user");
+
 
     Connection conn = getConn();
 

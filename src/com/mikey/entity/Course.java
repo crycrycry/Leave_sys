@@ -80,4 +80,18 @@ public class Course {
     public void setCourseGrade(String courseGrade) {
         this.courseGrade = courseGrade;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", classId='" + classId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", courseYear='" + courseYear + '\'' +
+                ", courseTerm='" + courseTerm + '\'' +
+                ", courseHour=" + courseHour +
+                ", courseMajor='" + courseMajor + '\'' +
+                ", courseGrade='" + courseGrade + '\'' +
+                '}';
+    }
 }

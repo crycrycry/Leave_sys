@@ -76,15 +76,15 @@
 
             student = new Student();
 
-            student.setStuId(resultSet.getString("stu_id"));
-            student.setUserId(resultSet.getInt("user_id"));
-            student.setClassId(resultSet.getString("class_id"));
-            student.setStuName(resultSet.getString("stu_name"));
-            student.setStuSex(resultSet.getString("stu_sex"));
-            student.setStuAddress(resultSet.getString("stu_address"));
-            student.setStuTelephone(resultSet.getString("stu_telephone"));
-            student.setStuContact(resultSet.getString("stu_contact"));
-            student.setStuContactTel(resultSet.getString("stu_contactTel"));
+            student.setStuId(stu.getString("stu_id"));
+            student.setUserId(stu.getInt("user_id"));
+            student.setClassId(stu.getString("class_id"));
+            student.setStuName(stu.getString("stu_name"));
+            student.setStuSex(stu.getString("stu_sex"));
+            student.setStuAddress(stu.getString("stu_address"));
+            student.setStuTelephone(stu.getString("stu_telephone"));
+            student.setStuContact(stu.getString("stu_contact"));
+            student.setStuContactTel(stu.getString("stu_contactTel"));
 
             leave.setStudent(student);
         }

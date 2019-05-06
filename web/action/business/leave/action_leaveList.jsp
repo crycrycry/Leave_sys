@@ -16,21 +16,25 @@
     Leave leave = null;
 
     String start1 = request.getParameter("start");//开始下标
-
     String total1 = request.getParameter("total");//当前页记录数
 
     Integer start=start1!=null&&start1!=""?Integer.parseInt(start1):0;
     Integer total=total1!=null&&total1!=""?Integer.parseInt(total1):Integer.MAX_VALUE;
 
+    HttpSession sessions = request.getSession();
+
+    User user = (User) sessions.getAttribute("user");
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_leave limit ?,?";
+    String sql = "select * from sys_leave where stu_id = ? limit ?,?";
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-    preparedStatement.setInt(1,start);
-    preparedStatement.setInt(2,total);
+    preparedStatement.setString(1,user.getStudent().getStuId());
+
+    preparedStatement.setInt(2,start);
+    preparedStatement.setInt(3,total);
 
     ResultSet resultSet = preparedStatement.executeQuery();
 

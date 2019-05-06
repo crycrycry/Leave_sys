@@ -25,8 +25,9 @@
             <form action="<%=path%>/action/business/department/action_searchDepartment.jsp" method="post">
                     <input type="text" placeholder="请输入查询条件" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <input class="button border-main icon-search" type="submit" value="搜索"></li>
-            </form>
-        </div>
+
+                <button type="button" class="button border-yellow" onclick="window.location.href='<%=path%>/page/business/department/addOrUpdateDepartment.jsp'"><span class="icon-plus-square-o"></span> 添加二级学院</button>
+            </form></div>
         <table class="table table-hover text-center">
             <tr>
                 <th width="100" style="text-align:left; padding-left:20px;">序号</th>

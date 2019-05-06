@@ -21,8 +21,18 @@ public class Leave {
     private Date leaveAudittime;
 
     private String leaveOpinion;
-
+    //对应学生
     private Student student;
+    //课程
+    private Course course;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
     public Student getStudent() {
         return student;

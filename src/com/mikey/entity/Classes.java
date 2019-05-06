@@ -50,4 +50,15 @@ public class Classes {
     public void setClassGrade(String classGrade) {
         this.classGrade = classGrade == null ? null : classGrade.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Classes{" +
+                "classId='" + classId + '\'' +
+                ", className='" + className + '\'' +
+                ", depId='" + depId + '\'' +
+                ", classMajor='" + classMajor + '\'' +
+                ", classGrade='" + classGrade + '\'' +
+                '}';
+    }
 }

@@ -25,6 +25,7 @@
             <form action="<%=path%>/action/business/class/action_searchClass.jsp" method="post">
                     <input type="text" placeholder="请输入查询条件" name="search" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <input class="button border-main icon-search" type="submit" value="搜索"></li>
+                <button type="button" class="button border-yellow" onclick="window.location.href='<%=path%>/page/business/class/addOrUpdateClass.jsp'"><span class="icon-plus-square-o"></span> 添加班级</button>
             </form>
         </div>
         <table class="table table-hover text-center">

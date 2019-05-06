@@ -1,4 +1,5 @@
 <%@ page import="java.sql.Connection" %>
+<%@ page import="java.util.Date" %>
 <%@ include file="/page/utils/database.jsp"%>
 <%--
   Created by IntelliJ IDEA.
@@ -17,9 +18,13 @@
 
     Instructor instructor= null;
 
+    List<Department> departments= new ArrayList<Department>();
+
+    Connection conn = getConn();
+
     if (user_id!=null&&user_id!=""){
 
-        Connection conn = getConn();
+
 
         String sql_user = "select * from sys_user where user_id = ?";
 
@@ -57,7 +62,20 @@
 
             user.setInstructor(instructor);
         }
+
     }
+    PreparedStatement statement = conn.prepareStatement("select * from sys_department");
+    ResultSet resultSet1 = statement.executeQuery();
+
+    while (resultSet1.next()){
+        Department department = new Department();
+        department.setDepId(resultSet1.getString("dep_id"));
+        department.setDepName(resultSet1.getString("dep_name"));
+
+        System.out.println("二级学院："+department);
+        departments.add(department);
+    }
+    System.out.println(departments);
 
 %>
 <!DOCTYPE html>
@@ -86,9 +104,25 @@
                     <label>所属二级学院：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="dep_id" value="<%=instructor!=null?instructor.getDepId():""%>"  data-validate="required:所属二级学院不能为空;" />
-                    <div class="tips"></div>
-                </div>
+                    <%--<input type="text" class="input w50" name="dep_id" value="<%=instructor!=null?instructor.getDepId():""%>"  data-validate="required:所属二级学院不能为空;" />--%>
+
+                    <select name="dep_id" class="input" onchange="changesearch()" style="width:380px; line-height:17px; display:inline-block">
+                        <%
+                            for (Department department: departments){
+                        %>
+                        <option value="<%=department.getDepId()%>"
+                                <%
+                            if (instructor!=null&&department.getDepId().equals(instructor.getDepId())){
+                                out.print("selected");
+                            }%>
+                        >
+                            <%=department.getDepName()%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                        <div class="tips"></div>
+                        </div>
             </div>
             <div class="form-group">
                 <div class="label">

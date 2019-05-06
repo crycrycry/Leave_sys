@@ -15,6 +15,8 @@
 
     Instructor instructor = null;
 
+    List<Department> departments = null;
+
     String start1 = request.getParameter("start");//开始下标
 
     String total1 = request.getParameter("total");//当前页记录数
@@ -46,6 +48,26 @@
 
        instructors.add(instructor);
    }
+
+   String sql_dept = "select * from sys_department";
+
+    PreparedStatement preparedStatement_dept = conn.prepareStatement(sql_dept);
+
+    ResultSet resultSetDept = preparedStatement_dept.executeQuery();
+
+    departments = new ArrayList<Department>();
+
+    while (resultSetDept.next()){
+
+        Department department = new Department();
+
+        department.setDepId(resultSetDept.getString("dep_id"));
+        department.setDepName(resultSetDept.getString("dep_name"));
+
+        departments.add(department);
+    }
+
+    request.setAttribute("departments",departments);
 
    request.setAttribute("instructors",instructors);
 

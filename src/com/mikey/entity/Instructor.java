@@ -49,4 +49,15 @@ public class Instructor {
     public void setInstTelephone(String instTelephone) {
         this.instTelephone = instTelephone == null ? null : instTelephone.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "instId='" + instId + '\'' +
+                ", userId=" + userId +
+                ", instName='" + instName + '\'' +
+                ", depId='" + depId + '\'' +
+                ", instTelephone='" + instTelephone + '\'' +
+                '}';
+    }
 }

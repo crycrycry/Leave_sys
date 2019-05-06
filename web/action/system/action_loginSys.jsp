@@ -54,7 +54,8 @@
                     student.setStuSex(resultSet1.getString("stu_sex"));
                     student.setStuAddress(resultSet1.getString("stu_address"));
                     student.setStuTelephone(resultSet1.getString("stu_telephone"));
-                    student.setStuContact(resultSet1.getString("stu_contactTel"));
+                    student.setStuContact(resultSet1.getString("stu_contact"));
+                    student.setStuContactTel(resultSet1.getString("stu_contactTel"));
 
                     user.setStudent(student);
                     close(preparedStatement1,resultSet1);
@@ -63,7 +64,7 @@
 
                 break;
             case 2:
-                PreparedStatement preparedStatement2 = connection.prepareStatement("select * from sys_teacher where user_id = ?");
+                PreparedStatement preparedStatement2 = connection.prepareStatement("select * from sys_instructor where user_id = ?");
 
                 preparedStatement2.setInt(1,user.getUserId());
 
