@@ -22,5 +22,7 @@ public class Test {
         System.out.println(leave_id);
 
         System.out.println((int)(Math.random()*(999-100+1)));
+
+        java.util.Date dated=new java.util.Date();
     }
 }

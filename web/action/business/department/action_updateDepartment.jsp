@@ -27,8 +27,10 @@
 
     preparedStatement.executeUpdate();
 
+    close(preparedStatement,conn);
+
     request.setAttribute("msg","修改成功");
 
-    process(request,response,"/action/business/department/departmentList.jsp");
+    process(request,response,"/action/business/department/action_departmentList.jsp");
 %>
 

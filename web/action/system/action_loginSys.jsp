@@ -35,8 +35,6 @@
         user.setUserType(resultSet.getInt("user_type"));
         user.setUserAvailable(resultSet.getInt("user_available"));
 
-        request.getSession().setAttribute("user",user);
-
         switch (user.getUserType()){
             case 1:
                 PreparedStatement preparedStatement1 = connection.prepareStatement("select * from sys_student where user_id = ?");
@@ -105,7 +103,7 @@
                     break;
         }
         }
-
+        request.getSession().setAttribute("user",user);
         process(request, response, "/page/common/main.jsp");
 
     }else {
@@ -115,6 +113,6 @@
         process(request, response, "/page/system/login.jsp");
 
     }
-    //关闭连接
+    //关闭连接/home/mikey/MIKEY/MIKEY/IDEAWorkSpace/Leave_sys/web
     close(resultSet,preparedStatement,connection);
 %>

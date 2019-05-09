@@ -89,7 +89,11 @@
             leave.setStudent(student);
         }
         leaves.add(leave);
+
+        close(preparedStatement_student,stu);
     }
+
+    close(resultSet,preparedStatement,conn);
 
     request.setAttribute("leaves",leaves);
 

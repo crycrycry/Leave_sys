@@ -15,9 +15,9 @@
 
     Classes classe = null;
 
-    if (class_id!=null&&class_id!=""){
+    Connection conn = getConn();
 
-        Connection conn = getConn();
+    if (class_id!=null&&class_id!=""){
 
         String sql = "select * from sys_classes where class_id = ?";
 
@@ -36,8 +36,28 @@
             classe.setClassMajor(resultSet.getString("class_major"));
             classe.setClassGrade(resultSet.getString("class_grade"));
         }
+
+        close(preparedStatement,resultSet);
     }
 
+    String sql = "select * from sys_department";
+
+    PreparedStatement preparedStatement_dept = conn.prepareStatement(sql);
+
+    ResultSet resultSet = preparedStatement_dept.executeQuery();
+
+    List<Department> departments = new ArrayList<Department>();
+
+    while (resultSet.next()){
+        Department department = new Department();
+
+        department.setDepId(resultSet.getString("dep_id"));
+        department.setDepName(resultSet.getString("dep_name"));
+
+        departments.add(department);
+    }
+
+    close(resultSet,preparedStatement_dept,conn);
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -45,7 +65,7 @@
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改个人信息</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="<%=path%>/action/business/class/<%=class_id!=null?"action_updateClass.jsp":"action_addCourse.jsp"%>">
+        <form method="post" class="form-x" action="<%=path%>/action/business/class/<%=class_id!=null?"action_updateClass.jsp":"action_addClass.jsp"%>">
             <div class="clear"></div>
             <%--班级编号、所属二级学院、班级名称、年级、专业--%>
             <div class="form-group">
@@ -71,8 +91,22 @@
                     <label>二级学院：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="dep_id"  value="<%=classe!=null?classe.getDepId():""%>"  data-validate="required:二级学院不能为空" />
-                    <div class="tips"></div>
+                    <%--<input type="text" class="input w50" name="dep_id"  value="<%=classe!=null?classe.getDepId():""%>"  data-validate="required:二级学院不能为空" />--%>
+                        <select name="dep_id" class="input w50">
+                            <%
+                                for (Department dept:departments) {
+                            %>
+                            <option <%if (classe!=null&&classe.getDepId().equals(dept.getDepId())){%>
+                                    selected="selected"
+                                    <%
+                                        }
+                                    %>
+                                    value="<%=dept.getDepId()%>"><%=dept.getDepName()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+                        <div class="tips"></div>
                 </div>
             </div>
             <div class="form-group">

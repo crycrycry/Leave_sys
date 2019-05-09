@@ -58,7 +58,7 @@
                     <td><%=user.getStudent().getStuTelephone()%></td>
                     <td><%=user.getStudent().getStuContact()%></td>
                     <td><%=user.getStudent().getStuContactTel()%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/student/addOrUpdateStudent.jsp?student_id=<%=user.getStudent().getUserId()%>"><span class="icon-edit"></span> 修改</a>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/student/addOrUpdateStudent.jsp?student_id=<%=user.getStudent().getStuId()%>"><span class="icon-edit"></span> 修改</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=user.getUserId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
                 </tr>

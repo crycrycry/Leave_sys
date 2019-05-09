@@ -57,6 +57,8 @@
 
             System.out.println(leave);
         }
+
+        close(preparedStatement);
     }
 
     //查询课程
@@ -85,6 +87,8 @@
 
         courses.add(course);
     }
+
+    close(resultSet,preparedStatement,conn);
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">

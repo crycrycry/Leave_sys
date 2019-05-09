@@ -64,6 +64,8 @@
        users.add(user);
    }
 
+   close(resultSet,preparedStatement,conn);
+
    request.setAttribute("students",users);
 
    process(request,response,"/page/business/student/studentList.jsp");

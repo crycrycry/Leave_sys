@@ -62,6 +62,8 @@
 
             preparedStatement_teacher.executeUpdate();
 
+            close(preparedStatement_teacher);
+
             break;
         case 3://管理员
 
@@ -81,10 +83,14 @@
 
             preparedStatement.executeUpdate();
 
+            close(preparedStatement);
+
             break;
     }
 
     sessions.invalidate();
+
+    close(conn);
 
     response.sendRedirect(path+"/page/system/login.jsp");
 %>

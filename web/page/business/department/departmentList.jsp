@@ -45,7 +45,7 @@
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
                     <td><%=department.getDepId()%></td>
                     <td><%=department.getDepName()%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/class/addOrUpdateClass.jsp?department_id=<%=department.getDepId()%>"><span class="icon-edit"></span> 修改</a>
+                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/department/addOrUpdateDepartment.jsp?department_id=<%=department.getDepId()%>"><span class="icon-edit"></span> 修改</a>
                         <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=department.getDepId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
                 </tr>
@@ -64,7 +64,7 @@
     //单个删除
     function del(depId){
         if(confirm("您确定要删除吗?")){
-            window.open("<%=path%>/action/business/department/action_delInstructor.jsp?department_id="+depId,"_self");
+            window.open("<%=path%>/action/business/department/action_delDepartment.jsp?department_id="+depId,"_self");
         }
     }
 

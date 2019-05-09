@@ -25,8 +25,6 @@
 
     preparedStatement.execute();
 
-    close(preparedStatement,conn);
-
     String sql_user = "delete from sys_user where user_id = ?";
 
     PreparedStatement preparedStatement_user = conn.prepareStatement(sql_user);
@@ -34,6 +32,10 @@
     preparedStatement_user.setInt(1,Integer.parseInt(user_id));
 
     preparedStatement_user.execute();
+
+    close(preparedStatement,conn);
+
+    close(preparedStatement_user);
 
     request.setAttribute("msg","删除成功");
 

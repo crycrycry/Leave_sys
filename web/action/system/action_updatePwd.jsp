@@ -35,6 +35,8 @@
 
         preparedStatement.executeUpdate();
 
+        close(preparedStatement,conn);
+
         sessions.invalidate();
 
         response.sendRedirect(path + "/page/system/login.jsp");

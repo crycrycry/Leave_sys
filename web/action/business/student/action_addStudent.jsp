@@ -65,7 +65,7 @@
 
         preparedStatement_stu.execute();
 
-        close(preparedStatement, conn);
+        close(resultSet,preparedStatement, conn);
 
         request.setAttribute("msg", "添加成功");
 

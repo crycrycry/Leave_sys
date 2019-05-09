@@ -25,7 +25,7 @@
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_classes limit ?,?";
+    String sql = "select * from sys_classes inner  join  sys_department on sys_department.dep_id = sys_classes.dep_id limit ?,?";
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
@@ -38,15 +38,21 @@
 
    while (resultSet.next()){
        classe = new Classes();
-
+       Department department = new Department();
        classe.setClassId(resultSet.getString("class_id"));
        classe.setClassName(resultSet.getString("class_name"));
        classe.setDepId(resultSet.getString("dep_id"));
        classe.setClassMajor(resultSet.getString("class_major"));
        classe.setClassGrade(resultSet.getString("class_grade"));
 
+       department.setDepId(resultSet.getString("dep_id"));
+       department.setDepName(resultSet.getString("dep_name"));
+       classe.setDepartments(department);
+
        classes.add(classe);
    }
+
+   close(resultSet,preparedStatement,conn);
 
    request.setAttribute("classes",classes);
 

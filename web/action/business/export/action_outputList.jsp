@@ -103,6 +103,10 @@
         classe.setClassGrade(resultSetClass.getString("class_grade"));
         classes.add(classe);
     }
+
+    close(preparedStatement_term,resultSetTerm);
+    close(resultSetClass,preparedStatementClass,conn);
+
     request.setAttribute("classes",classes);
 
     process(request,response,"/page/business/export/outputList.jsp");

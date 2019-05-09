@@ -41,6 +41,8 @@
 
         request.setAttribute("msg", "审批成功");
 
+        close(preparedStatement,conn);
+
         process(request, response, "/action/business/approval/action_approvalList.jsp");
 
     }catch (Exception e){

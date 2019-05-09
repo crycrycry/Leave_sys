@@ -34,6 +34,8 @@
 
     preparedStatement.executeUpdate();
 
+    close(preparedStatement,conn);
+
     request.setAttribute("msg","修改成功");
 
     process(request,response,"/action/business/instructor/action_InstructorList.jsp");

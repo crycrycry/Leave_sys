@@ -45,6 +45,8 @@
        departments.add(department);
    }
 
+   close(resultSet,preparedStatement,conn);
+
    request.setAttribute("departments",departments);
 
    process(request,response,"/page/business/department/departmentList.jsp");

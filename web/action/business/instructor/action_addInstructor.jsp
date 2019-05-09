@@ -53,6 +53,9 @@
     preparedStatement_inst.setString(4,inst_telephone);
 
     preparedStatement_inst.execute();
+
+    close(preparedStatement_user);
+    close(preparedStatement,resultSet);
     close(preparedStatement_inst,conn);
 
     request.setAttribute("msg","添加成功");

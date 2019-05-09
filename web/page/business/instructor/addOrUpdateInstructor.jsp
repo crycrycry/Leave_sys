@@ -24,8 +24,6 @@
 
     if (user_id!=null&&user_id!=""){
 
-
-
         String sql_user = "select * from sys_user where user_id = ?";
 
         PreparedStatement preparedStatement_user = conn.prepareStatement(sql_user);
@@ -35,6 +33,7 @@
         ResultSet resultSetUser = preparedStatement_user.executeQuery();
 
         if (resultSetUser.next()){
+
             user = new User();
 
             user.setUserId(resultSetUser.getInt("user_id"));
@@ -44,11 +43,13 @@
             user.setUserAvailable(resultSetUser.getInt("user_available"));
         }
 
+        close(preparedStatement_user,resultSetUser);
+
         String sql = "select * from sys_instructor where user_id = ?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-        preparedStatement.setString(1,user_id);
+        preparedStatement.setInt(1,Integer.parseInt(user_id));
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -63,6 +64,9 @@
             user.setInstructor(instructor);
         }
 
+        System.out.println(user);
+        close(preparedStatement,resultSet);
+
     }
     PreparedStatement statement = conn.prepareStatement("select * from sys_department");
     ResultSet resultSet1 = statement.executeQuery();
@@ -76,7 +80,7 @@
         departments.add(department);
     }
     System.out.println(departments);
-
+    close(resultSet1,statement,conn);
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -106,13 +110,13 @@
                 <div class="field">
                     <%--<input type="text" class="input w50" name="dep_id" value="<%=instructor!=null?instructor.getDepId():""%>"  data-validate="required:所属二级学院不能为空;" />--%>
 
-                    <select name="dep_id" class="input" onchange="changesearch()" style="width:380px; line-height:17px; display:inline-block">
+                    <select name="dep_id" class="input" style="width:380px; line-height:17px; display:inline-block">
                         <%
                             for (Department department: departments){
                         %>
                         <option value="<%=department.getDepId()%>"
                                 <%
-                            if (instructor!=null&&department.getDepId().equals(instructor.getDepId())){
+                            if (instructor!=null&&instructor.getDepId().equals(department.getDepId())){
                                 out.print("selected");
                             }%>
                         >

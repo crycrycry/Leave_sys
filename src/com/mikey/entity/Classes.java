@@ -1,5 +1,7 @@
 package com.mikey.entity;
 
+import java.util.List;
+
 public class Classes {
     private String classId;
 
@@ -10,6 +12,8 @@ public class Classes {
     private String classMajor;
 
     private String classGrade;
+
+    private Department departments;
 
     public String getClassId() {
         return classId;
@@ -51,6 +55,14 @@ public class Classes {
         this.classGrade = classGrade == null ? null : classGrade.trim();
     }
 
+    public Department getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Department departments) {
+        this.departments = departments;
+    }
+
     @Override
     public String toString() {
         return "Classes{" +
@@ -59,6 +71,7 @@ public class Classes {
                 ", depId='" + depId + '\'' +
                 ", classMajor='" + classMajor + '\'' +
                 ", classGrade='" + classGrade + '\'' +
+                ", departments=" + departments +
                 '}';
     }
 }

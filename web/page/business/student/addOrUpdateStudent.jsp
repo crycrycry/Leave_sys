@@ -15,21 +15,22 @@
 
     Student student = null;
 
-    if (student_id!=null&&student_id!=""){
+    Connection conn = getConn();
 
-        Connection conn = getConn();
+    List<Classes> classes = classes  = new ArrayList<Classes>();
 
-        String sql = "select * from sys_student where student_id = ?";
+    if (student_id!=null&&student_id!="") {
+
+        String sql = "select * from sys_student where stu_id = ?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-        preparedStatement.setString(1,student_id);
+        preparedStatement.setString(1, student_id);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        if (resultSet.next()){
+        if (resultSet.next()) {
             student = new Student();
-
             student.setStuId(resultSet.getString("stu_id"));
             student.setUserId(resultSet.getInt("user_id"));
             student.setClassId(resultSet.getString("class_id"));
@@ -37,9 +38,33 @@
             student.setStuSex(resultSet.getString("stu_sex"));
             student.setStuAddress(resultSet.getString("stu_address"));
             student.setStuTelephone(resultSet.getString("stu_telephone"));
-            student.setStuContact(resultSet.getString("stu_contact_tel"));
+            student.setStuContact(resultSet.getString("stu_contact"));
+            student.setStuContactTel(resultSet.getString("stu_contactTel"));
         }
+        close(preparedStatement,resultSet);
     }
+        String sql_class = "select * from sys_classes";
+
+        PreparedStatement preparedStatement_class = conn.prepareStatement(sql_class);
+
+        ResultSet resultSetClass = preparedStatement_class.executeQuery();
+
+        while (resultSetClass.next()){
+
+            Classes classe = new Classes();
+
+            classe.setClassId(resultSetClass.getString("class_id"));
+            classe.setClassName(resultSetClass.getString("class_name"));
+            classe.setDepId(resultSetClass.getString("dep_id"));
+            classe.setClassMajor(resultSetClass.getString("class_major"));
+            classe.setClassGrade(resultSetClass.getString("class_grade"));
+
+            classes.add(classe);
+        }
+        System.out.println(classes);
+
+        close(resultSetClass,preparedStatement_class,conn);
+
 
 %>
 <!DOCTYPE html>
@@ -74,8 +99,22 @@
                     <label>所属班级：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="class_id"  value="<%=student!=null?student.getClassId():""%>"  data-validate="required:所属班级不能为空" />
-                    <div class="tips"></div>
+                    <%--<input type="text" class="input w50" name="class_id"  value="<%=student!=null?student.getClassId():""%>"  data-validate="required:所属班级不能为空" />--%>
+                        <select name="class_id" class="input w50">
+                            <%
+                                for (Classes classe:classes) {
+                            %>
+                            <option <%if (student!=null&&student.getClassId().equals(classe.getClassId())){%>
+                                    selected="selected"
+                                    <%
+                                        }
+                                    %>
+                                    value="<%=classe.getClassId()%>"><%=classe.getClassName()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+                        <div class="tips"></div>
                 </div>
             </div>
             <div class="form-group">
@@ -83,8 +122,12 @@
                     <label>性别：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="stu_sex"  value="<%=student!=null?student.getStuSex():""%>"  data-validate="required:性别不能为空" />
-                    <div class="tips"></div>
+                    <%--<input type="text" class="input w50" name="stu_sex"  value="<%=student!=null?student.getStuSex():""%>"  data-validate="required:性别不能为空" />--%>
+                        <select name="stu_sex" class="input w50">
+                            <option value="0" <%if (student!=null&&"0".equals(student.getStuSex())){%> selected="selected"<%}%>>男</option>
+                            <option value="1" <%if (student!=null&&"1".equals(student.getStuSex())){%> selected="selected"<%}%>>女</option>
+                        </select>
+                        <div class="tips"></div>
                 </div>
             </div>
             <div class="form-group">

@@ -27,5 +27,5 @@
 
     request.setAttribute("msg","删除成功");
 
-    process(request,response,"/action/business/department/departmentList.jsp");
+    process(request,response,"/action/business/department/action_departmentList.jsp");
 %>

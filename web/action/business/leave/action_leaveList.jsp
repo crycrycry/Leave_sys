@@ -56,6 +56,8 @@
        leaves.add(leave);
    }
 
+   close(resultSet,preparedStatement,conn);
+
    request.setAttribute("leaves",leaves);
 
    process(request,response,"/page/business/leave/leaveList.jsp");

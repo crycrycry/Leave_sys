@@ -67,10 +67,13 @@
         departments.add(department);
     }
 
+    close(preparedStatement,resultSet);
+    close(resultSetDept,preparedStatement_dept,conn);
+
     request.setAttribute("departments",departments);
 
-   request.setAttribute("instructors",instructors);
+    request.setAttribute("instructors",instructors);
 
-   process(request,response,"/page/business/instructor/instructorList.jsp");
+    process(request,response,"/page/business/instructor/instructorList.jsp");
 
 %>

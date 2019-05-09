@@ -85,6 +85,8 @@
 
         courses.add(course);
     }
+
+    close(resultSet,preparedStatement,conn);
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">

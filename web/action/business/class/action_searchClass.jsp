@@ -56,6 +56,8 @@
         classes.add(classe);
     }
 
+    close(resultSet,preparedStatement,conn);
+
     request.setAttribute("classes",classes);
 
     process(request,response,"/page/business/class/classList.jsp");

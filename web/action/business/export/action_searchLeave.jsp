@@ -107,6 +107,8 @@
         String term = resultSetTerm.getString("course_term");
         termList.add(term);
     }
+
+    close(preparedStatement_term,resultSetTerm);
     request.setAttribute("terms",termList);
     //查询班级
     PreparedStatement preparedStatementClass = conn.prepareStatement("select * from sys_classes");
@@ -120,6 +122,8 @@
         classe.setClassGrade(resultSetClass.getString("class_grade"));
         classes.add(classe);
     }
+    close(preparedStatement,resultSet);
+    close(resultSetClass,preparedStatementClass,conn);
     request.setAttribute("classes",classes);
 
     process(request,response,"/page/business/export/outputList.jsp");

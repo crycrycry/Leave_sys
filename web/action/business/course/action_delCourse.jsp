@@ -27,6 +27,8 @@
 
     close(preparedStatement,conn);
 
+    close(preparedStatement,conn);
+
     request.setAttribute("msg","删除成功");
 
     process(request,response,"/action/business/course/action_courseList.jsp");

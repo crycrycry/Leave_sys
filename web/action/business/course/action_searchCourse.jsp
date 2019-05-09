@@ -64,6 +64,8 @@
         courses.add(course);
     }
 
+    close(resultSet,preparedStatement,conn);
+
     request.setAttribute("courses",courses);
 
     process(request,response,"/page/business/course/courseList.jsp");

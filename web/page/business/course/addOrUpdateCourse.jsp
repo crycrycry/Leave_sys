@@ -15,9 +15,11 @@
 
     Course course = null;
 
-    if (course_id!=null&&course_id!=""){
+    List<Classes> classes = null;
 
-        Connection conn = getConn();
+    Connection conn = getConn();
+
+    if (course_id!=null&&course_id!=""){
 
         String sql = "select * from sys_course where course_id = ?";
 
@@ -38,6 +40,28 @@
             course.setCourseMajor(resultSet.getString("course_major"));
             course.setCourseGrade(resultSet.getString("course_grade"));
         }
+
+        close(preparedStatement,resultSet);
+    }
+
+    String sql_class = "select * from sys_classes";
+
+    PreparedStatement preparedStatement = conn.prepareStatement(sql_class);
+
+    ResultSet resultSet = preparedStatement.executeQuery();
+
+    classes = new ArrayList<Classes>();
+
+    while (resultSet.next()){
+        Classes classe = new Classes();
+
+        classe.setClassId(resultSet.getString("class_id"));
+        classe.setClassName(resultSet.getString("class_name"));
+        classe.setDepId(resultSet.getString("dep_id"));
+        classe.setClassMajor(resultSet.getString("class_major"));
+        classe.setClassGrade(resultSet.getString("class_grade"));
+
+        classes.add(classe);
     }
 
 %>
@@ -73,8 +97,23 @@
                     <label>所属班级：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="class_id"  value="<%=course!=null?course.getClassId():""%>"  data-validate="required:所属班级不能为空" />
-                    <div class="tips"></div>
+                    <%--<input type="text" class="input w50" name="class_id"  value="<%=course!=null?course.getClassId():""%>"  data-validate="required:所属班级不能为空" />--%>
+                        <select name="class_id" class="input w50">
+                            <%
+                                for (Classes classe:classes) {
+                            %>
+                            <option <%if (course!=null&&course.getClassId().equals(classe.getClassId())){%>
+                                    selected="selected"
+                                    <%
+                                        }
+                                    %>
+                                    value="<%=classe.getClassId()%>"><%=classe.getClassName()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+
+                        <div class="tips"></div>
                 </div>
             </div>
             <div class="form-group">
