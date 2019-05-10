@@ -37,6 +37,7 @@
             classe.setClassGrade(resultSet.getString("class_grade"));
         }
 
+        System.out.println("修改班级："+class_id+"\t"+classe);
         close(preparedStatement,resultSet);
     }
 
@@ -92,7 +93,7 @@
                 </div>
                 <div class="field">
                     <%--<input type="text" class="input w50" name="dep_id"  value="<%=classe!=null?classe.getDepId():""%>"  data-validate="required:二级学院不能为空" />--%>
-                        <select name="dep_id" class="input w50">
+                        <select name="dep_id" class="input w50" readonly="readonly" disabled="true">
                             <%
                                 for (Department dept:departments) {
                             %>

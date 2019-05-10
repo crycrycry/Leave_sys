@@ -15,6 +15,8 @@
     List<Classes> classes = new ArrayList<Classes>();
 
     classes = (List<Classes>) request.getAttribute("classes");
+
+//    List<Department> departments = (List<Department>) request.getAttribute("departments");
 %>
 <html>
 <body>
@@ -48,7 +50,7 @@
                     <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" /><%=++i%></td>
                     <td><%=classe.getClassId()%></td>
                     <td><%=classe.getClassName()%></td>
-                    <td><%=classe.getDepId()%></td>
+                    <td><%=classe.getDepartments()!=null?classe.getDepartments().getDepName():""%></td>
                     <td><%=classe.getClassMajor()%></td>
                     <td><%=classe.getClassGrade()%></td>
                     <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/class/addOrUpdateClass.jsp?class_id=<%=classe.getClassId()%>"><span class="icon-edit"></span> 修改</a>

@@ -53,7 +53,7 @@
                     <td><%=user.getStudent().getStuId()%></td>
                     <td><%=user.getUsername()%></td>
                     <td><%=user.getStudent().getStuName()%></td>
-                    <td><%=user.getStudent().getStuSex()%></td>
+                    <td><%="0".equals(user.getStudent().getStuSex())?"男":"女"%></td>
                     <td><%=user.getStudent().getStuAddress()%></td>
                     <td><%=user.getStudent().getStuTelephone()%></td>
                     <td><%=user.getStudent().getStuContact()%></td>

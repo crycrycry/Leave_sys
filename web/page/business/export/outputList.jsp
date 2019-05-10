@@ -116,12 +116,10 @@
 <%--</form>--%>
 <script type="text/javascript">
 
-
     function exportExcel(){
         document.searchOrOutput.action="<%=path%>/action/business/export/action_OutputExcel.jsp";
         document.searchOrOutput.submit();
     }
-
     //全选
     $("#checkall").click(function(){
         $("input[name='id[]']").each(function(){
@@ -133,7 +131,6 @@
             }
         });
     })
-
     //批量删除
     function DelSelect(){
         var Checkbox=false;

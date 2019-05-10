@@ -29,33 +29,43 @@
     String searchTeam = request.getParameter("team");//学期
     String searchClasses = request.getParameter("classes");//班级
     String searchkey = request.getParameter("searchkey");//搜索内容
-
+    HttpSession sessions = request.getSession();
+    User user = (User) sessions.getAttribute("user");
     Connection conn = getConn();
 
-        int flag = 0;
-        //查询假条
-        StringBuilder sql = new StringBuilder("select * from sys_leave sl left join sys_student ss on sl.stu_id = ss.stu_id left join sys_course on sl.course_id = sys_course.course_id ") ;
-        if (searchTeam!=null){
-            sql.append("where sys_course.course_term = ?");
-        }else if (searchClasses!=null) {
-            sql.append("and sys_course.class_id = ? ");
-        }else if (searchkey!=null) { }
-        sql.append("limit ?,?");
+//        int flag = 0;
+//        //查询假条
+//        StringBuilder sql = new StringBuilder("select * from sys_leave sl left join sys_student ss on sl.stu_id = ss.stu_id left join sys_course on sl.course_id = sys_course.course_id ") ;
+//        if (searchTeam!=null){
+//            sql.append("where sys_course.course_term = ?");
+//        }else if (searchClasses!=null) {
+//            sql.append("and sys_course.class_id = ? ");
+//        }else if (searchkey!=null) { }
+//        sql.append("limit ?,?");
+//
+//        PreparedStatement preparedStatement = conn.prepareStatement(sql.toString());
+//
+//        if (searchTeam!=null){
+//            preparedStatement.setString(++flag, searchTeam);
+//        }else if (searchClasses!=null) {
+//            preparedStatement.setString(++flag, searchClasses);
+//        }else if (searchkey!=null){ }
+//
 
-        PreparedStatement preparedStatement = conn.prepareStatement(sql.toString());
 
-        if (searchTeam!=null){
-            preparedStatement.setString(++flag, searchTeam);
-        }else if (searchClasses!=null) {
-            preparedStatement.setString(++flag, searchClasses);
-        }else if (searchkey!=null){ }
+    StringBuilder sql = new StringBuilder("select * from sys_leave sl,sys_student ss,sys_course sc,sys_classes scl where sl.stu_id=ss.stu_id and sl.course_id=sc.course_id and sc.class_id=scl.class_id and dep_id = ? and course_term = ? and sc.class_id = ? limit ?,?");
 
-        preparedStatement.setInt(++flag, start);
-        preparedStatement.setInt(++flag, total);
+    System.out.println("Message:\n"+user.getInstructor().getDepId()+"\n"+sql+"\nsearchTeam="+searchTeam+"\nsearchClasses="+searchClasses+"\nsearchkey="+searchkey);
 
-        System.out.println("Message:\nsql\n"+sql+"\nsearchTeam="+searchTeam+"\nsearchClasses="+searchClasses+"\nsearchkey="+searchkey+"\n"+flag);
+    PreparedStatement preparedStatement = conn.prepareStatement(sql.toString());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+    preparedStatement.setString(1,user.getInstructor().getDepId());
+    preparedStatement.setString(2,searchTeam);
+    preparedStatement.setString(3,searchClasses);
+    preparedStatement.setInt(4, start);
+    preparedStatement.setInt(5, total);
+
+    ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             leave = new Leave();
 

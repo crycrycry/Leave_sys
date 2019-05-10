@@ -11,7 +11,7 @@
 <%@ include file="/page/common/base.jsp"%>
 <%
     Integer user_id = null;
-    String student_id = request.getParameter("student_id");
+    String stu_id = request.getParameter("stu_id");
     String stu_name = request.getParameter("stu_name");
     String class_id = request.getParameter("class_id");
     String stu_sex = request.getParameter("stu_sex");
@@ -28,7 +28,7 @@
 
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-        preparedStatement.setString(1, student_id);
+        preparedStatement.setString(1, stu_id);
 
         preparedStatement.setInt(2, 1);
 
@@ -39,7 +39,7 @@
 
         PreparedStatement preparedStatement_user = conn.prepareStatement(sql_user);
 
-        preparedStatement_user.setString(1, student_id);
+        preparedStatement_user.setString(1, stu_id);
 
         ResultSet resultSet = preparedStatement_user.executeQuery();
 
@@ -53,7 +53,7 @@
         System.out.println(sql_stu+"\n"+user_id+"\n"+sql_stu);
 
         PreparedStatement preparedStatement_stu = conn.prepareStatement(sql_stu);
-        preparedStatement_stu.setString(1, student_id);
+        preparedStatement_stu.setString(1, stu_id);
         preparedStatement_stu.setInt(2, user_id);
         preparedStatement_stu.setString(3, class_id);
         preparedStatement_stu.setString(4, stu_name);

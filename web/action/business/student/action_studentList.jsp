@@ -24,15 +24,19 @@
     Integer start=start1!=null&&start1!=""?Integer.parseInt(start1):0;
     Integer total=total1!=null&&total1!=""?Integer.parseInt(total1):Integer.MAX_VALUE;
 
+    HttpSession sessions = request.getSession();
+
+    User instructor = (User) sessions.getAttribute("user");
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_user su ,sys_student ss where su.user_id = ss.user_id limit ?,?";
+    String sql = "select * from sys_user su ,sys_student ss,sys_classes sc where su.user_id = ss.user_id and ss.class_id = sc.class_id and dep_id=? limit ?,?";
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-    preparedStatement.setInt(1,start);
-    preparedStatement.setInt(2,total);
+    preparedStatement.setString(1,instructor.getInstructor().getDepId());
+    preparedStatement.setInt(2,start);
+    preparedStatement.setInt(3,total);
 
     ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -66,6 +70,7 @@
 
    close(resultSet,preparedStatement,conn);
 
+    System.out.println("学生列表："+user);
    request.setAttribute("students",users);
 
    process(request,response,"/page/business/student/studentList.jsp");

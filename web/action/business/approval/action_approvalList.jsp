@@ -31,12 +31,14 @@
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_leave sl left join sys_student ss on sl.stu_id = ss.stu_id limit ?,?";
+    String sql = "select * from sys_leave sl , sys_student ss ,sys_classes sc where sl.stu_id = ss.stu_id and ss.class_id=sc.class_id and dep_id = ? limit ?,?";
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-    preparedStatement.setInt(1,start);
-    preparedStatement.setInt(2,total);
+    preparedStatement.setString(1,user.getInstructor().getDepId());
+    preparedStatement.setInt(2,start);
+    preparedStatement.setInt(3,total);
+
 
     ResultSet resultSet = preparedStatement.executeQuery();
 

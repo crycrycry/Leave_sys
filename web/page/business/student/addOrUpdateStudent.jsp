@@ -16,7 +16,9 @@
     Student student = null;
 
     Connection conn = getConn();
+    HttpSession sessions = request.getSession();
 
+    User instructor = (User) sessions.getAttribute("user");
     List<Classes> classes = classes  = new ArrayList<Classes>();
 
     if (student_id!=null&&student_id!="") {
@@ -43,10 +45,11 @@
         }
         close(preparedStatement,resultSet);
     }
-        String sql_class = "select * from sys_classes";
+        String sql_class = "select * from sys_classes,sys_department where sys_department.dep_id = sys_classes.dep_id and sys_department.dep_id =?";
 
         PreparedStatement preparedStatement_class = conn.prepareStatement(sql_class);
 
+        preparedStatement_class.setString(1,instructor.getInstructor().getDepId());
         ResultSet resultSetClass = preparedStatement_class.executeQuery();
 
         while (resultSetClass.next()){
@@ -81,7 +84,7 @@
                     <label>学生编号：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="student_id" <%if (student!=null){out.print("readonly='readonly'");}%> value="<%=student!=null?student.getStuId():""%>"  data-validate="required:学生编号不能为空" />
+                    <input type="text" class="input w50" name="stu_id" <%if (student!=null){out.print("readonly='readonly'");}%> value="<%=student!=null?student.getStuId():""%>"  data-validate="required:学生编号不能为空" />
                     <div class="tips"></div>
                 </div>
             </div>

@@ -70,15 +70,15 @@
                             break;
                     }%></td>
                     <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/approval/approvalDeatil.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>预览</a>
-                     <%
-                         if (leave.getLeaveStatus().equals("0")){
-                         %>
-                        <a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>同意</a>
-                        <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
-                            <span class="icon-trash-o"></span>不同意</a>
-                        <%
-                            }
-                        %>
+                     <%--<%--%>
+                         <%--if (leave.getLeaveStatus().equals("0")){--%>
+                         <%--%>--%>
+                        <%--<a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>同意</a>--%>
+                        <%--<a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">--%>
+                            <%--<span class="icon-trash-o"></span>不同意</a>--%>
+                        <%--<%--%>
+                            <%--}--%>
+                        <%--%>--%>
                     </div></td>
                 </tr>
 

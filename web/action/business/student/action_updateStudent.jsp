@@ -10,33 +10,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/page/common/base.jsp"%>
 <%
-    String course_id = request.getParameter("course_id");
+    String stu_id = request.getParameter("stu_id");
+    String stu_name = request.getParameter("stu_name");
     String class_id = request.getParameter("class_id");
-    String course_name = request.getParameter("course_name");
-    String course_year = request.getParameter("course_year");
-    String course_term = request.getParameter("course_term");
-    String course_hour = request.getParameter("course_hour");
-    String course_major = request.getParameter("course_major");
-    String course_grade = request.getParameter("course_grade");
+    String stu_sex = request.getParameter("stu_sex");
+    String stu_address = request.getParameter("stu_address");
+    String stu_telephone = request.getParameter("stu_telephone");
+    String stu_contact = request.getParameter("stu_contact");
+    String stu_contactTel = request.getParameter("stu_contactTel");
 
     try {
 
         Connection conn = getConn();
 
-        String sql = "update sys_course set class_id = ? , course_name = ? , course_year = ? , course_term = ? , course_hour = ? , course_major = ? , course_grade = ? where course_id = ?";
-
-        System.out.println(class_id + "\t" + class_id + "\t" + course_name + "\t" + course_year + "\t" + course_term + "\t" + course_hour + "\t" + course_major + "\t" + course_grade + "\n" + sql);
+        String sql = "update sys_student set class_id = ? , stu_name = ? , stu_sex = ? , stu_address = ? , stu_telephone = ? , stu_contact = ? , stu_contactTel = ? where stu_id = ?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
         preparedStatement.setString(1, class_id);
-        preparedStatement.setString(2, course_name);
-        preparedStatement.setString(3, course_year);
-        preparedStatement.setString(4, course_term);
-        preparedStatement.setInt(5, Integer.parseInt(course_hour));
-        preparedStatement.setString(6, course_major);
-        preparedStatement.setString(7, course_grade);
-        preparedStatement.setString(8, course_id);
+        preparedStatement.setString(2, stu_name);
+        preparedStatement.setString(3, stu_sex);
+        preparedStatement.setString(4, stu_address);
+        preparedStatement.setString(5, stu_telephone);
+        preparedStatement.setString(6, stu_contact);
+        preparedStatement.setString(7, stu_contactTel);
+        preparedStatement.setString(8, stu_id);
 
         preparedStatement.executeUpdate();
 

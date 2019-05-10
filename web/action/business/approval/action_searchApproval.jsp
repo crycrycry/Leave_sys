@@ -25,13 +25,15 @@
 
     Integer start=start1!=null&&start1!=""?Integer.parseInt(start1):0;
     Integer total=total1!=null&&total1!=""?Integer.parseInt(total1):Integer.MAX_VALUE;
+    HttpSession sessions = request.getSession();
 
+    User user = (User) sessions.getAttribute("user");
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_leave where leave_id like ? or course_id like ? or leave_reason like ? or leave_dayNum like ? or stu_id like ? or leave_applyTime like ? or leave_status like ? or leave_auditTime like ? or leave_opinion like ?  limit ?,?";
+    String sql = "select * from sys_leave sl , sys_student ss ,sys_classes sc where (leave_id like ? or sl.course_id like ? or leave_reason like ? or leave_dayNum like ? or sl.stu_id like ? or leave_applyTime like ? or leave_status like ? or leave_auditTime like ? or leave_opinion like ?) and sl.stu_id = ss.stu_id and ss.class_id=sc.class_id and dep_id = ? limit ?,?";
 
-    System.out.println("search_msg:"+search+"\n"+sql);
+    System.out.println("search_msg:"+search+"\n"+sql+"\n"+user.getInstructor().toString());
 
     PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
@@ -44,8 +46,9 @@
     preparedStatement.setString(7,"%"+search+"%");
     preparedStatement.setString(8,"%"+search+"%");
     preparedStatement.setString(9,"%"+search+"%");
-    preparedStatement.setInt(10,start);
-    preparedStatement.setInt(11,total);
+    preparedStatement.setString(10,user.getInstructor().getDepId());
+    preparedStatement.setInt(11,start);
+    preparedStatement.setInt(12,total);
 
     ResultSet resultSet = preparedStatement.executeQuery();
 

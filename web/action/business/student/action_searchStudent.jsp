@@ -26,10 +26,15 @@
     Integer start=start1!=null&&start1!=""?Integer.parseInt(start1):0;
     Integer total=total1!=null&&total1!=""?Integer.parseInt(total1):Integer.MAX_VALUE;
 
+    HttpSession sessions = request.getSession();
+
+    User instructor = (User) sessions.getAttribute("user");
 
     Connection conn = getConn();
 
-    String sql = "select * from sys_user su ,sys_student ss where su.user_id = ss.user_id and user_type = 1 and (stu_id like ? or user_name like ? or stu_name like ? or class_id = ? or stu_sex = ? or stu_address like ? or stu_telephone like ? or stu_contact like ? or stu_contactTel like ?)   limit ?,?";
+//    String sql = "select * from sys_user su ,sys_student ss where su.user_id = ss.user_id and user_type = 1 and (stu_id like ? or user_name like ? or stu_name like ? or class_id = ? or stu_sex = ? or stu_address like ? or stu_telephone like ? or stu_contact like ? or stu_contactTel like ?)   limit ?,?";
+
+    String sql = "select * from sys_user su ,sys_student ss,sys_classes sc where su.user_id = ss.user_id and user_type = 1 and (stu_id like ? or user_name like ? or stu_name like ? or ss.class_id = ? or stu_sex = ? or stu_address like ? or stu_telephone like ? or stu_contact like ? or stu_contactTel like ?) and ss.class_id = sc.class_id and dep_id=?  limit ?,?";
 
     System.out.println("search_msg:"+search+"\n"+sql);
 
@@ -44,8 +49,9 @@
     preparedStatement.setString(7,"%"+search+"%");
     preparedStatement.setString(8,"%"+search+"%");
     preparedStatement.setString(9,"%"+search+"%");
-    preparedStatement.setInt(10,start);
-    preparedStatement.setInt(11,total);
+    preparedStatement.setString(10,instructor.getInstructor().getDepId());
+    preparedStatement.setInt(11,start);
+    preparedStatement.setInt(12,total);
 
     ResultSet resultSet = preparedStatement.executeQuery();
 
