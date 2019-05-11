@@ -44,6 +44,7 @@
             <volist name="list" id="vo">
 
                 <%
+                    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
                     int i = 0;
                     for (Leave leave : leaves) {
                 %>
@@ -54,8 +55,8 @@
                     <td><%=leave.getLeaveReason()%></td>
                     <td><%=leave.getLeaveDaynum()%></td>
                     <%--<fmt:formatDate value=<%=leave.getLeaveApplytime()%> pattern="yyyy-MM-dd HH:mm:ss"/>--%>
-                    <td><%=leave.getLeaveApplytime()%></td>
-                    <td><%=leave.getLeaveAudittime()!=null?leave.getLeaveAudittime():"暂无"%></td>
+                    <td><%=sdf.format(leave.getLeaveApplytime())%></td>
+                    <td><%=leave.getLeaveAudittime()!=null?sdf.format(leave.getLeaveAudittime()):"暂无"%></td>
                     <td><%=leave.getLeaveOpinion()!=null?leave.getLeaveOpinion():"暂无"%></td>
                     <td><%
                         switch (Integer.parseInt(leave.getLeaveStatus())){
@@ -69,16 +70,13 @@
                             out.print("未通过");
                             break;
                     }%></td>
-                    <td><div class="button-group"> <a class="button border-main" href="<%=path%>/page/business/approval/approvalDeatil.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>预览</a>
-                     <%--<%--%>
-                         <%--if (leave.getLeaveStatus().equals("0")){--%>
-                         <%--%>--%>
-                        <%--<a class="button border-main" href="<%=path%>/page/business/leave/addOrUpdateLeave.jsp?leave_id=<%=leave.getLeaveId()%>"><span class="icon-edit"></span>同意</a>--%>
-                        <%--<a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">--%>
-                            <%--<span class="icon-trash-o"></span>不同意</a>--%>
-                        <%--<%--%>
-                            <%--}--%>
-                        <%--%>--%>
+                    <td><div class="button-group">
+                        <%--<a class="button border-main" href="<%=path%>/page/business/approval/approvalDeatil.jsp?leave_id=<%=leave.getLeaveId()%>">--%>
+                            <%--<span class="icon-edit"></span>预览</a>--%>
+
+                        <a class="button border-main" onclick="leaveDetail('<%=leave.getLeaveId()%>')" href="#">
+                            <span class="icon-edit"></span>预览</a>
+
                     </div></td>
                 </tr>
 
@@ -92,6 +90,20 @@
     </div>
 <%--</form>--%>
 <script type="text/javascript">
+
+    function leaveDetail(leaveIds) {
+
+        console.log(leaveIds);
+
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['90%', '90%'], //宽高
+            content: '<%=basePath%>page/business/approval/approvalDeatil.jsp?leave_id='+leaveIds
+        });
+    }
+
+
     //不同意
     function pass(leaveId){
         if(confirm("您确定要删除吗?")){
@@ -104,8 +116,6 @@
             window.open("<%=path%>/action/business/approval/action_delLeave.jsp?leave_id="+leaveId,"_self");
         }
     }
-
-
     //全选
     $("#checkall").click(function(){
         $("input[name='id[]']").each(function(){

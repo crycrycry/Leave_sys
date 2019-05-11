@@ -23,9 +23,9 @@
 
     Connection conn = getConn();
 
-    Date date = new Date();
+    java.util.Date date = new java.util.Date();
 
-    SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmsss");
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
 
     String leave_id = sdf.format(date) + (int)(Math.random()*(999-100+1));
 
@@ -39,7 +39,7 @@
     preparedStatement.setString(3,leave_reason);
     preparedStatement.setString(4,leave_dayNum);
     preparedStatement.setString(5,user.getStudent().getStuId());
-    preparedStatement.setString(6,leave_applyTime);
+    preparedStatement.setDate(6,new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(leave_applyTime).getTime()));
 
     preparedStatement.execute();
 

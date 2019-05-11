@@ -46,6 +46,7 @@
             <volist name="list" id="vo">
 
                 <%
+                    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
                     int i = 0;
                     for (Leave leave : leaves) {
                 %>
@@ -55,7 +56,7 @@
                     <td><%=leave.getCourseId()%></td>
                     <td><%=leave.getLeaveReason()%></td>
                     <td><%=leave.getLeaveDaynum()%></td>
-                    <td pattern="yyyy-MM-dd"><%=leave.getLeaveApplytime()%></td>
+                    <td><%=sdf.format(leave.getLeaveApplytime()).toString()%></td>
 
                     <td><%if (leave.getLeaveStatus()!=null){
                         if (leave.getLeaveStatus().equals("0")) {

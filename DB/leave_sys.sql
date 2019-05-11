@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: leave_sys
 -- ------------------------------------------------------
--- Server version	5.7.25-0ubuntu0.18.04.2
+-- Server version	5.7.26-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -66,7 +66,7 @@ CREATE TABLE `sys_classes` (
 
 LOCK TABLES `sys_classes` WRITE;
 /*!40000 ALTER TABLE `sys_classes` DISABLE KEYS */;
-INSERT INTO `sys_classes` (`class_id`, `class_name`, `dep_id`, `class_major`, `class_grade`) VALUES ('Test','Test','666777','Test','Test'),('Test3','2Test','666777','Test2','Test');
+INSERT INTO `sys_classes` (`class_id`, `class_name`, `dep_id`, `class_major`, `class_grade`) VALUES ('class001','班级一','G1','软件工程','大二');
 /*!40000 ALTER TABLE `sys_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `sys_course` (
 
 LOCK TABLES `sys_course` WRITE;
 /*!40000 ALTER TABLE `sys_course` DISABLE KEYS */;
-INSERT INTO `sys_course` (`course_id`, `class_id`, `course_name`, `course_year`, `course_term`, `course_hour`, `course_major`, `course_grade`) VALUES ('T1','Test','12','12','12',12,'12','12'),('T12','Test','Test','4','Test',666,'Test','Test'),('Test2','Test','Test','44','1',666,'Test','13');
+INSERT INTO `sys_course` (`course_id`, `class_id`, `course_name`, `course_year`, `course_term`, `course_hour`, `course_major`, `course_grade`) VALUES ('course001','class001','课程1','1','1',1,'软件工程','大二');
 /*!40000 ALTER TABLE `sys_course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `sys_department` (
 
 LOCK TABLES `sys_department` WRITE;
 /*!40000 ALTER TABLE `sys_department` DISABLE KEYS */;
-INSERT INTO `sys_department` (`dep_id`, `dep_name`) VALUES ('G1','大数据与软件工程学院'),('G112','XXX学院方法'),('G2','孔子学院'),('G3','测试数据');
+INSERT INTO `sys_department` (`dep_id`, `dep_name`) VALUES ('G1','大数据与软件工程学院');
 /*!40000 ALTER TABLE `sys_department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `sys_instructor` (
   PRIMARY KEY (`inst_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `sys_instructor_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `sys_instructor` (
 
 LOCK TABLES `sys_instructor` WRITE;
 /*!40000 ALTER TABLE `sys_instructor` DISABLE KEYS */;
-INSERT INTO `sys_instructor` (`inst_id`, `user_id`, `inst_name`, `dep_id`, `inst_telephone`) VALUES (1,4,'麦奇','阿姆是特朗学院','110');
+INSERT INTO `sys_instructor` (`inst_id`, `user_id`, `inst_name`, `dep_id`, `inst_telephone`) VALUES (9,29,'蔡敏仪','G1','18276254855');
 /*!40000 ALTER TABLE `sys_instructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,9 +168,9 @@ CREATE TABLE `sys_leave` (
   `leave_reason` varchar(150) DEFAULT NULL COMMENT '请假事由',
   `leave_dayNum` int(11) DEFAULT NULL COMMENT '请假天数',
   `stu_id` varchar(30) DEFAULT NULL,
-  `leave_applyTime` datetime DEFAULT NULL COMMENT '请假时间',
-  `leave_status` varchar(3) DEFAULT NULL COMMENT '请假状态，0未审核，1同意，2，不同意',
-  `leave_auditTime` datetime DEFAULT NULL COMMENT '审核时间',
+  `leave_applyTime` date DEFAULT NULL COMMENT '请假时间',
+  `leave_status` varchar(3) DEFAULT '0' COMMENT '请假状态，0未审核，1同意，2，不同意',
+  `leave_auditTime` date DEFAULT NULL COMMENT '审核时间',
   `leave_opinion` varchar(150) DEFAULT NULL COMMENT '审核意见',
   PRIMARY KEY (`leave_id`),
   KEY `sys_leave_sys_course_course_id_fk` (`course_id`),
@@ -184,6 +184,7 @@ CREATE TABLE `sys_leave` (
 
 LOCK TABLES `sys_leave` WRITE;
 /*!40000 ALTER TABLE `sys_leave` DISABLE KEYS */;
+INSERT INTO `sys_leave` (`leave_id`, `course_id`, `leave_reason`, `leave_dayNum`, `stu_id`, `leave_applyTime`, `leave_status`, `leave_auditTime`, `leave_opinion`) VALUES ('201905101554059441','course001','Test 01',111111,'student','2019-05-10','1','2019-05-10','批准'),('20190511081701742','course001','Test Date',6,'student','2019-05-11','1','2019-05-11','pass');
 /*!40000 ALTER TABLE `sys_leave` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +217,7 @@ CREATE TABLE `sys_student` (
 
 LOCK TABLES `sys_student` WRITE;
 /*!40000 ALTER TABLE `sys_student` DISABLE KEYS */;
-INSERT INTO `sys_student` (`stu_id`, `user_id`, `class_id`, `stu_name`, `stu_sex`, `stu_address`, `stu_telephone`, `stu_contact`, `stu_contactTel`) VALUES ('1',5,'1','1','1','1','1','1','1'),('s1',6,'Test','s2','s3','s4','s5','s6','s7'),('S133',14,'Test','S1','S1','S1','S1','S1','S1'),('S1333',15,'Test','S1','S1','S1','S1','S1','S1');
+INSERT INTO `sys_student` (`stu_id`, `user_id`, `class_id`, `stu_name`, `stu_sex`, `stu_address`, `stu_telephone`, `stu_contact`, `stu_contactTel`) VALUES ('student',30,'class001','麦奇','0','广西柳州','18276297824','mikey','18276297824');
 /*!40000 ALTER TABLE `sys_student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +235,7 @@ CREATE TABLE `sys_user` (
   `user_type` int(2) NOT NULL COMMENT '用户角色 1:学生 2：老师 3：管理员',
   `user_available` int(2) NOT NULL DEFAULT '1' COMMENT '1:可用 2：封号',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +244,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` (`user_id`, `user_name`, `user_password`, `user_type`, `user_available`) VALUES (3,'admin','admin',3,1),(4,'T001','123456',2,1),(5,'student','123456',1,1),(6,'S1','123456',1,1),(7,'S1','123456',1,1),(8,'S1','123456',1,1),(9,'S1','123456',1,1),(10,'S1','123456',1,1),(11,'S1','123456',1,1),(12,'S1','123456',1,1),(13,'S1','123456',1,1),(14,'S133','123456',1,1),(15,'S1333','123456',1,1);
+INSERT INTO `sys_user` (`user_id`, `user_name`, `user_password`, `user_type`, `user_available`) VALUES (3,'admin','admin',3,1),(29,'T001','123456',2,1),(30,'student','123456',1,1);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -256,4 +257,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-25 23:30:50
+-- Dump completed on 2019-05-11  9:00:15

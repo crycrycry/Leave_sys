@@ -13,6 +13,8 @@
     //修改 添加
     String leave_id = request.getParameter("leave_id");
 
+    System.out.println("查询假条ID："+leave_id);
+
     Leave leave = null;
 
     Student student = null;
@@ -37,9 +39,9 @@
             leave.setLeaveReason(resultSet.getString("leave_reason"));
             leave.setLeaveDaynum(resultSet.getInt("leave_dayNum"));
             leave.setStuId(resultSet.getString("stu_id"));
-            leave.setLeaveApplytime(resultSet.getTime("leave_applyTime"));
+            leave.setLeaveApplytime(resultSet.getDate("leave_applyTime"));
             leave.setLeaveStatus(resultSet.getString("leave_status"));
-            leave.setLeaveAudittime(resultSet.getTime("leave_auditTime"));
+            leave.setLeaveAudittime(resultSet.getDate("leave_auditTime"));
             leave.setLeaveOpinion(resultSet.getString("leave_opinion"));
             student = new Student();
 
@@ -186,7 +188,7 @@
                 </div>
                 <div class="field">
                     <%
-                    if (leave.getLeaveStatus().equals("0")){
+                    if (leave!=null&&"0".equals(leave.getLeaveStatus())){
                     %>
                     <button class="button bg-main icon-check-square-o" type="button" onclick="pass();"> 同意</button>
                     <button class="button bg-main icon-warning" type="button" onclick="nopass();"> 不同意</button>

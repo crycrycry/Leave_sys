@@ -53,7 +53,7 @@
 //
 
 
-    StringBuilder sql = new StringBuilder("select * from sys_leave sl,sys_student ss,sys_course sc,sys_classes scl where sl.stu_id=ss.stu_id and sl.course_id=sc.course_id and sc.class_id=scl.class_id and dep_id = ? and course_term = ? and sc.class_id = ? limit ?,?");
+    StringBuilder sql = new StringBuilder("select * from sys_leave sl,sys_student ss,sys_course sc,sys_classes scl where sl.stu_id=ss.stu_id and sl.course_id=sc.course_id and sc.class_id=scl.class_id and dep_id = ? and course_term = ? and sc.class_id = ? and sl.leave_status = ? limit ?,?");
 
     System.out.println("Message:\n"+user.getInstructor().getDepId()+"\n"+sql+"\nsearchTeam="+searchTeam+"\nsearchClasses="+searchClasses+"\nsearchkey="+searchkey);
 
@@ -62,8 +62,9 @@
     preparedStatement.setString(1,user.getInstructor().getDepId());
     preparedStatement.setString(2,searchTeam);
     preparedStatement.setString(3,searchClasses);
-    preparedStatement.setInt(4, start);
-    preparedStatement.setInt(5, total);
+    preparedStatement.setString(4,"1");
+    preparedStatement.setInt(5, start);
+    preparedStatement.setInt(6, total);
 
     ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -74,9 +75,9 @@
             leave.setLeaveReason(resultSet.getString("leave_reason"));
             leave.setLeaveDaynum(resultSet.getInt("leave_dayNum"));
             leave.setStuId(resultSet.getString("stu_id"));
-            leave.setLeaveApplytime(resultSet.getTime("leave_applyTime"));
+            leave.setLeaveApplytime(resultSet.getDate("leave_applyTime"));
             leave.setLeaveStatus(resultSet.getString("leave_status"));
-            leave.setLeaveAudittime(resultSet.getTime("leave_auditTime"));
+            leave.setLeaveAudittime(resultSet.getDate("leave_auditTime"));
             leave.setLeaveOpinion(resultSet.getString("leave_opinion"));
 
             student = new Student();

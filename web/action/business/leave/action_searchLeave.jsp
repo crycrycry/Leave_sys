@@ -57,9 +57,9 @@
         leave.setLeaveReason(resultSet.getString("leave_reason"));
         leave.setLeaveDaynum(resultSet.getInt("leave_dayNum"));
         leave.setStuId(resultSet.getString("stu_id"));
-        leave.setLeaveApplytime(resultSet.getTime("leave_applyTime"));
+        leave.setLeaveApplytime(resultSet.getDate("leave_applyTime"));
         leave.setLeaveStatus(resultSet.getString("leave_status"));
-        leave.setLeaveAudittime(resultSet.getTime("leave_auditTime"));
+        leave.setLeaveAudittime(resultSet.getDate("leave_auditTime"));
         leave.setLeaveOpinion(resultSet.getString("leave_opinion"));
 
         leaves.add(leave);

@@ -1,6 +1,5 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="java.util.logging.SimpleFormatter" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ include file="/page/utils/database.jsp"%>
 <%--
@@ -16,7 +15,7 @@
     String leave_id = request.getParameter("leave_id");
     String leave_opinion = request.getParameter("leave_opinion");
     String leave_status = request.getParameter("leave_status");
-    Date date = new Date();
+    java.util.Date date = new java.util.Date();
 
     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
@@ -32,7 +31,7 @@
 
         preparedStatement.setString(1, leave_opinion);
         preparedStatement.setString(2, leave_status);
-        preparedStatement.setString(3, sdf.format(date));
+        preparedStatement.setDate(3, new java.sql.Date(date.getTime()));
         preparedStatement.setString(4, leave_id);
 
         preparedStatement.executeUpdate();
