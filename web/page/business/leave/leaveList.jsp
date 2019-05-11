@@ -229,8 +229,6 @@
             return false;
         }
     }
-
-
     //批量移动
     function changecate(o){
         var Checkbox=false;
@@ -245,7 +243,6 @@
         }
         else{
             alert("请选择要操作的内容!");
-
             return false;
         }
     }
