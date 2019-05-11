@@ -80,8 +80,14 @@
                         <%
                             }
                         %>
+                            <%
+                                if ("2".equals(leave.getLeaveStatus())||"0".equals(leave.getLeaveStatus())){//不通过状态才给删除
+                            %>
                             <a class="button border-red" href="javascript:void(0)" onclick="return del('<%=leave.getLeaveId()%>')" target="_self">
                             <span class="icon-trash-o"></span> 删除</a> </div></td>
+                    <%
+                        }
+                    %>
                 </tr>
 
                 <%
@@ -97,9 +103,22 @@
 
     //单个删除
     function del(leaveId){
-        if(confirm("您确定要删除吗?")){
+        layer.confirm("您确定要删除吗?",{
+            btn: ['确认','取消']
+        },function (index) {
+            layer.close();
             window.open("<%=path%>/action/business/leave/action_delLeave.jsp?leave_id="+leaveId,"_self");
-        }
+            layer.close(index);
+        },function () {
+
+        })
+
+
+
+        return false;
+        // if(confirm("您确定要删除吗?")){
+            <%--window.open("<%=path%>/action/business/leave/action_delLeave.jsp?leave_id="+leaveId,"_self");--%>
+        // }
     }
 
 

@@ -63,9 +63,22 @@
 
     //单个删除
     function del(depId){
-        if(confirm("您确定要删除吗?")){
+
+        layer.confirm("您确定要删除吗?",{
+            btn: ['确认','取消']
+        },function (index) {
+            layer.close();
             window.open("<%=path%>/action/business/department/action_delDepartment.jsp?department_id="+depId,"_self");
-        }
+
+            layer.close(index);
+        },function () {
+
+        })
+        return false;
+        <%--window.open("<%=path%>/action/business/class/action_delClass.jsp?class_id="+classId,"_self");--%>
+<%----%>
+//         if(confirm("您确定要删除吗?")){
+//         }
     }
 
     //全选

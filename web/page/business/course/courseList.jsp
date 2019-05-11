@@ -75,9 +75,21 @@
 
     //单个删除
     function del(courseId){
-        if(confirm("您确定要删除吗?")){
+
+        layer.confirm("您确定要删除吗?",{
+            btn: ['确认','取消']
+        },function (index) {
+            layer.close();
             window.open("<%=path%>/action/business/course/action_delCourse.jsp?course_id="+courseId,"_self");
-        }
+            layer.close(index);
+        },function () {
+
+        })
+        return false;
+
+        // if(confirm("您确定要删除吗?")){
+        <%--}            window.open("<%=path%>/action/business/class/action_delClass.jsp?class_id="+classId,"_self");--%>
+
     }
 
     //全选

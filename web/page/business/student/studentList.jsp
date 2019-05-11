@@ -76,9 +76,17 @@
 
     //单个删除
     function del(userId){
-        if(confirm("您确定要删除吗?")){
+
+        layer.confirm("您确定要删除吗?",{
+            btn: ['确认','取消']
+        },function (index) {
+            layer.close();
             window.open("<%=path%>/action/business/student/action_delStudent.jsp?user_id="+userId,"_self");
-        }
+            layer.close(index);
+        },function () {
+
+        })
+        return false;
     }
 
     //全选
