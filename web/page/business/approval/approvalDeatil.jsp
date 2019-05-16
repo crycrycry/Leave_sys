@@ -190,8 +190,8 @@
                     <%
                     if (leave!=null&&"0".equals(leave.getLeaveStatus())){
                     %>
-                    <button class="button bg-main icon-check-square-o" type="button" onclick="pass();"> 同意</button>
-                    <button class="button bg-main icon-warning" type="button" onclick="nopass();"> 不同意</button>
+                    <a target="_parent" class="button bg-main icon-check-square-o" href="javascript:void(0)" onclick="pass();"> 同意</a>
+                    <a target="_parent" class="button bg-main icon-warning" href="javascript:void(0)" onclick="nopass();"> 不同意</a>
                     <%
                         }
                     %>
@@ -204,10 +204,12 @@
 <script>
     function pass() {
         document.approvalform.action="<%=path%>/action/business/approval/action_updateApproval.jsp?leave_status=1";
+        document.approvalform.target="_parent";
         document.approvalform.submit();
     }
     function nopass() {
         document.approvalform.action="<%=path%>/action/business/approval/action_updateApproval.jsp?leave_status=2";
+        document.approvalform.target="_parent";
         document.approvalform.submit();
     }
 </script>

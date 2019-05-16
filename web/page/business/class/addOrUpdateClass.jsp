@@ -17,6 +17,8 @@
 
     Connection conn = getConn();
 
+    User user = (User) session.getAttribute("user");
+
     if (class_id!=null&&class_id!=""){
 
         String sql = "select * from sys_classes where class_id = ?";
@@ -64,7 +66,7 @@
 <html lang="zh-cn">
 <body>
 <div class="panel admin-panel">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改个人信息</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>班级信息</strong></div>
     <div class="body-content">
         <form method="post" class="form-x" action="<%=path%>/action/business/class/<%=class_id!=null?"action_updateClass.jsp":"action_addClass.jsp"%>">
             <div class="clear"></div>
@@ -93,13 +95,12 @@
                 </div>
                 <div class="field">
                     <%--<input type="text" class="input w50" name="dep_id"  value="<%=classe!=null?classe.getDepId():""%>"  data-validate="required:二级学院不能为空" />--%>
-                        <select name="dep_id" class="input w50" readonly="readonly" disabled="true">
+                        <select name="dep_id" class="input w50" readonly="readonly">
                             <%
                                 for (Department dept:departments) {
                             %>
-                            <option <%if (classe!=null&&classe.getDepId().equals(dept.getDepId())){%>
-                                    selected="selected"
-                                    <%
+                            <option <%if (classe!=null&&classe.getDepId().equals(dept.getDepId())||(classe==null&&user.getInstructor().getDepId().equals(dept.getDepId()))){
+                                    out.print("selected='selected'");
                                         }
                                     %>
                                     value="<%=dept.getDepId()%>"><%=dept.getDepName()%></option>
